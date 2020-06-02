@@ -66,7 +66,12 @@ int16_t audio(int16_t sample)
 {
 	int16_t outSample = 0;
 	// create 64 sample buffer
+	int i = 0,
+	float buffer[64] = {0};
 
+	for(i=0;i<64;i++){
+		buffer[i]=0;
+	}
 
 	if(filterOn){
 		outSample = sample/2;
