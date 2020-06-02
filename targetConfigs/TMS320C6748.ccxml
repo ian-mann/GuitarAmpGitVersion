@@ -8,6 +8,15 @@
             <instance XML_version="1.2" href="drivers/tixds100v2pru.xml" id="drivers" xml="tixds100v2pru.xml" xmlpath="drivers"/>
             <platform XML_version="1.2" id="platform_0">
                 <instance XML_version="1.2" desc="TMS320C6748" href="devices/c6748.xml" id="TMS320C6748" xml="c6748.xml" xmlpath="devices"/>
+            <device HW_revision="1" XML_version="1.2" description="C674x Floating point DSP" id="TMS320C6748" partnum="TMS320C6748" simulation="no">
+                    <router HW_revision="" XML_version="1.2" description="" id="device_0" isa="ICEPICK_C">
+                        <subpath id="device_1">
+                            <cpu HW_revision="" XML_version="1.2" description="" deviceSim="false" id="device_2" isa="TMS320C674X">
+                                <property Type="filepathfield" Value="..\..\..\c6748\gel\C6748.gel" id="GEL File"/>
+                            </cpu>
+                        </subpath>
+                    </router>
+                </device>
             </platform>
         </connection>
     </configuration>

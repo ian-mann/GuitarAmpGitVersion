@@ -72,6 +72,20 @@ trace.logType = "circular";
 
 bios.LOG_system.bufLen = 512;
 
+bios.PRD.create("PRD0");
+bios.PRD.instance("PRD0").order = 1;
+bios.PRD.instance("PRD0").fxn = prog.extern("dipPRD");
+bios.PRD.instance("PRD0").period = 500;
+bios.HWI.instance("HWI_INT5").fxn = prog.extern("audioHWI");
+bios.HWI.instance("HWI_INT5").useDispatcher = 1;
+bios.SWI.instance("PRD_swi").order = 1;
+bios.SWI.instance("KNL_swi").order = 2;
+bios.SWI.instance("PWRM_loadSwi").order = 3;
+bios.SWI.create("_audioSWI");
+bios.SWI.instance("_audioSWI").order = 5;
+bios.SWI.instance("_audioSWI").mailbox = 3;
+bios.SWI.instance("_audioSWI").fxn = prog.extern("audio");
+bios.HWI.instance("HWI_INT5").interruptSelectNumber = 61;
 // !GRAPHICAL_CONFIG_TOOL_SCRIPT_INSERT_POINT!
 
 if (config.hasReportedError == false) {

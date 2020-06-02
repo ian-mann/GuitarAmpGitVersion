@@ -12,4 +12,5 @@
 	<createSlaveProjects value=""/>
 	<templateProperties value="id=com.ti.rtsc.DSPBIOS.example_178,type=bios5,products=com.ti.rtsc.DSPBIOS,"/>
 	<filesToOpen value=""/>
+	<isTargetManual value="false"/>
 </projectOptions>
