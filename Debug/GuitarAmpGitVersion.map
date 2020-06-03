@@ -1,7 +1,7 @@
 ******************************************************************************
                TMS320C6x Linker PC v7.4.18                     
 ******************************************************************************
->> Linked Wed Jun 03 11:55:33 2020
+>> Linked Wed Jun 03 12:00:09 2020
 
 OUTPUT FILE NAME:   <GuitarAmpGitVersion.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 11812b80
@@ -1466,7 +1466,7 @@ ffffffff   ___c_args__
 11806e60   _atexit
 11806720   _atoi
 11802c44   _audio
-11802ed0   _audioHWI
+11802ee4   _audioHWI
 1180ffa8   _audioSWI
 00000001   _audioSWI$dorta
 00000005   _audioSWI$ord
@@ -2117,7 +2117,7 @@ address    name
 11802ba0   _main
 11802bd8   _dipPRD
 11802c44   _audio
-11802ed0   _audioHWI
+11802ee4   _audioHWI
 11802f60   _fputs
 11803300   _GPIO_setDir
 11803378   _GPIO_getInput

@@ -107,11 +107,11 @@ int16_t audio(int16_t s16){
 		}
 
 
-		else{
+		else{if(filterOn == false){
 
-			s16 = buffer[0];
+			s16 = buffer[65];
 		}
-
+		}
 		for(i=1;i<64;i++){
 					if(i<64){
 					buffer[i] = buffer[i-1];
