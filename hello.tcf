@@ -86,6 +86,7 @@ bios.SWI.instance("_audioSWI").order = 5;
 bios.SWI.instance("_audioSWI").mailbox = 3;
 bios.SWI.instance("_audioSWI").fxn = prog.extern("audio");
 bios.HWI.instance("HWI_INT5").interruptSelectNumber = 61;
+bios.SWI.instance("_audioSWI").destroy();
 // !GRAPHICAL_CONFIG_TOOL_SCRIPT_INSERT_POINT!
 
 if (config.hasReportedError == false) {

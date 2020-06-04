@@ -6,7 +6,7 @@
 #include "stdbool.h"
 int16_t volatile mask = 0xffff;
 bool filterOn = false;
-double filterCoef[65] = {
+float filterCoef[65] = {
 	   -0.0000,	    0.0000,	    0.0000,
 	   -0.0000,	   -0.0000,	    0.0000,	    0.0000,	   -0.0000,	   -0.0000,	   -0.0000,
 	    0.0000,	    0.0001,	   -0.0000,	   -0.0004,	   -0.0003,	    0.0006,	    0.0014,
@@ -18,7 +18,18 @@ double filterCoef[65] = {
 	   -0.0000,	    0.0001,	    0.0000,	   -0.0000,	   -0.0000,    -0.0000,		0.0000,
 	    0.0000,	   -0.0000,    -0.0000,	    0.0000,	    0.0000,    -0.0000
 };
-float buffer[64] = {0} ;
+float unfilteredCoef[65] = {1,1,1,1,1,1,1,1,1,1,
+						1,1,1,1,1,1,1,1,1,1,
+						1,1,1,1,1,1,1,1,1,1,
+						1,1,1,1,1,1,1,1,1,1,
+						1,1,1,1,1,1,1,1,1,1,
+						1,1,1,1,1,1,1,1,1,1,
+						1,1,1,1,1};
+int16_t buffer[64] = {0,0,0,0,0,0,0,0,0,0,0,0,
+					  0,0,0,0,0,0,0,0,0,0,0,0,
+					  0,0,0,0,0,0,0,0,0,0,0,0,
+					  0,0,0,0,0,0,0,0,0,0,0,0,
+					  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 
 
@@ -66,77 +77,35 @@ else
 
 }
 
-int16_t audio(int16_t s16){
-	// put sample into first slot of array and
-		// move the samples one to the left
-		int i = 0, j = 0;
-		buffer[0] = s16;
-
-
-		if(filterOn){
-		 // convolution of buffer and filter coefficients
-		 // Separate filter into three if statements
-		float sum = 0;
-		for (i=0;i<129;i++){
-			sum = 0;
-		   if(i<65){
-		   // overlap has not occurred, use up to current value
-		      for(j=0;j<=i;j++)
-		      {
-		       sum = sum + (buffer[j]*filterCoef[i-j]);
-		      }
-
-		   }else
-		   if(i>=65 && i<129){
-		   // full overlap, use full filter
-		      for(j=0;j<65;j++)
-		      {
-		       sum = sum + (buffer[i-65+j]*filterCoef[64-j]);
-		      }
-		   }else
-		   if(i>=129){
-		   // overlap past, use from i to samples remaining
-		       for(j=0;j<(129-i);j++)
-		       {
-		       sum = buffer[(129-i)+j]*filterCoef[65-j] + sum;
-		       }
-		   }
-		   s16 = sum;
-		   }
-
-		}
-
-
-		else{if(filterOn == false){
-
-			s16 = buffer[65];
-		}
-		}
-		for(i=1;i<64;i++){
-					if(i<64){
-					buffer[i] = buffer[i-1];
-				}
-			}
-return(s16);
-}
-
 
 //---------------------------------------------------------
 //---------------------------------------------------------
 void audioHWI(void)
 {
-int16_t s16=0;
-s16 = read_audio_sample();
-s16 = audio(s16);
+int16_t s16 = 0;
+int16_t outputSample = 0; // initialise sample variable
 
-if (MCASP->RSLOT)
-{
-// THIS IS THE LEFT CHANNEL!!!
-s16 &= mask;
-}
-else {
-// THIS IS THE RIGHT CHANNEL!!!
-s16 &= mask;
-}
-write_audio_sample(s16);
+int i = 0;
+int j = 0;
+s16 = read_audio_sample(); // get current input sample
+buffer[0] = s16; // put input sample at 0 spot of buffer
+
+	for(i=1;i<64;i++){ // move every item in buffer one to the right
+			buffer[i] = buffer[i-1];
+	}
+
+outputSample = buffer[64];
+
+	if (MCASP->RSLOT)
+	{
+		// THIS IS THE LEFT CHANNEL!!!
+		outputSample &= mask;
+	}
+	else {
+		// THIS IS THE RIGHT CHANNEL!!!
+		outputSample &= mask;
+	}
+
+write_audio_sample(outputSample);
+buffer[0] = 0; // 0 first sample for placing in buffer
 }

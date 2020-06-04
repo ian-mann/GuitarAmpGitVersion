@@ -1,0 +1,53 @@
+int16_t audio(int16_t s16){
+	// put sample into first slot of array and
+		// move the samples one to the left
+		int i = 0, j = 0;
+		buffer[0] = s16;
+
+
+		if(filterOn){
+		 // convolution of buffer and filter coefficients
+		 // Separate filter into three if statements
+		float sum = 0;
+		for (i=0;i<129;i++){
+			sum = 0;
+		   if(i<65){
+		   // overlap has not occurred, use up to current value
+		      for(j=0;j<=i;j++)
+		      {
+		       sum = sum + (buffer[j]*filterCoef[i-j]);
+		      }
+
+		   }else
+		   if(i>=65 && i<129){
+		   // full overlap, use full filter
+		      for(j=0;j<65;j++)
+		      {
+		       sum = sum + (buffer[i-65+j]*filterCoef[64-j]);
+		      }
+		   }else
+		   if(i>=129){
+		   // overlap past, use from i to samples remaining
+		       for(j=0;j<(129-i);j++)
+		       {
+		       sum = buffer[(129-i)+j]*filterCoef[65-j] + sum;
+		       }
+		   }
+		   s16 = sum;
+		   }
+
+		}
+
+
+		else{if(filterOn == false){
+
+			s16 = buffer[65];
+		}
+		}
+		for(i=1;i<64;i++){
+					if(i<64){
+					buffer[i] = buffer[i-1];
+				}
+			}
+return(s16);
+}
