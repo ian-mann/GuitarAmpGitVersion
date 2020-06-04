@@ -4,7 +4,10 @@
 #include "hellocfg.h" //BIOS include file
 #include "framework.h"
 #include "stdbool.h"
+#define SIZE_OF_BUFFER 64;
+
 int16_t volatile mask = 0xffff;
+int16_t buffer[64];
 bool filterOn = false;
 float filterCoef[65] = {
 	   -0.0000,	    0.0000,	    0.0000,
@@ -25,13 +28,12 @@ float unfilteredCoef[65] = {1,1,1,1,1,1,1,1,1,1,
 						1,1,1,1,1,1,1,1,1,1,
 						1,1,1,1,1,1,1,1,1,1,
 						1,1,1,1,1};
-int16_t buffer[64] = {0,0,0,0,0,0,0,0,0,0,0,0,
-					  0,0,0,0,0,0,0,0,0,0,0,0,
-					  0,0,0,0,0,0,0,0,0,0,0,0,
-					  0,0,0,0,0,0,0,0,0,0,0,0,
-					  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+float test[3] = {0.3333,0.3333,0.3334};
 
-
+// setup global buffer
+int bufferLength = 0;
+int readIndex = 1;
+int writeIndex = 0;
 
 //---------------------------------------------------------
 //---------------------------------------------------------
@@ -40,7 +42,7 @@ void main(void)
 	int i = 0;
 	for(i=0;i<64;i++){
 		buffer[i]=0;
-					 }
+	}
 
 initAll();
 return; // return to BIOS scheduler
@@ -84,17 +86,43 @@ void audioHWI(void)
 {
 int16_t s16 = 0;
 int16_t outputSample = 0; // initialise sample variable
+int16_t sum = 0;
 
-int i = 0;
-int j = 0;
+//int i = 0;
+//int j = 0;
+
+int prevRead = 0;
+int prevPrevRead = 0;
 s16 = read_audio_sample(); // get current input sample
-buffer[0] = s16; // put input sample at 0 spot of buffer
 
-	for(i=1;i<64;i++){ // move every item in buffer one to the right
-			buffer[i] = buffer[i-1];
-	}
+buffer[writeIndex] = s16;
+writeIndex++;
+if (writeIndex == 64)
+{
+    writeIndex = 0;
+}
 
-outputSample = buffer[64];
+prevRead = readIndex;
+prevPrevRead = prevRead-1;
+if (prevRead == 0){
+	prevPrevRead = 64;
+}
+readIndex++;
+if (readIndex == 64)
+{
+    readIndex = 0;
+}
+
+// implement buffer and convolution
+
+if(filterOn){
+	sum = (buffer[readIndex]*test[2] + buffer[prevRead]*test[1] + buffer[prevPrevRead]*test[0]);
+		   outputSample = sum;
+}
+else{
+
+outputSample = buffer[readIndex];
+}
 
 	if (MCASP->RSLOT)
 	{
@@ -107,5 +135,4 @@ outputSample = buffer[64];
 	}
 
 write_audio_sample(outputSample);
-buffer[0] = 0; // 0 first sample for placing in buffer
 }
