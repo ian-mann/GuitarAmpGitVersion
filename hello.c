@@ -29,7 +29,11 @@ float unfilteredCoef[65] = {1,1,1,1,1,1,1,1,1,1,
 						1,1,1,1,1,1,1,1,1,1,
 						1,1,1,1,1,1,1,1,1,1,
 						1,1,1,1,1};
-float test[3] = {0.3333,0.3333,0.3334};
+float lowPass1[16] = {0.0047, -0.0245,0.0017,0.0475,
+		   -0.0236,-0.1019,0.1137,
+		    0.4761,0.4761, 0.1137,-0.1019,-0.0236,
+		    0.0475,0.0017,-0.0245,0.0047};
+float lowPass2[3] = {0.333, 0.333, 0.333};
 
 // setup global buffer
 int bufferLength = 0;
@@ -101,7 +105,7 @@ int16_t sum = 0;
 int16_t signal = 0;
 
 int i = 0;
-//int j = 0;
+int j = 0;
 
 
 s16 = read_audio_sample(); // get current input sample
@@ -122,8 +126,12 @@ if (readBuffer == 65)
 // implement buffer and convolution
 
 if(filterOn){
-	for(i=0;i<readBuffer;i++){
-		   signal += buffer[readBuffer-1]*filterCoef[i];
+	j = readBuffer;
+	for(i=0;i<3;i++){
+		signal += buffer[j-i]*lowPass2[i];
+	}
+	if(readBuffer==0){
+		j=65;
 	}
 }
 
@@ -132,10 +140,11 @@ signal = buffer[readBuffer];
 }
 
 // implement distortion algorithm
-//if(dist){
-//}
-//else{
-//}
+if(dist){
+
+}
+else{
+}
 
 outputSample = signal;
 
