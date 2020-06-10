@@ -4,15 +4,19 @@
 #include "hellocfg.h" //BIOS include file
 #include "framework.h"
 #include "stdbool.h"
+#define SIZE_OF_BUFFER 65;
+
 int16_t volatile mask = 0xffff;
+int16_t buffer[65];
 bool filterOn = false;
+bool dist = false;
 float filterCoef[65] = {
 	   -0.0000,	    0.0000,	    0.0000,
 	   -0.0000,	   -0.0000,	    0.0000,	    0.0000,	   -0.0000,	   -0.0000,	   -0.0000,
 	    0.0000,	    0.0001,	   -0.0000,	   -0.0004,	   -0.0003,	    0.0006,	    0.0014,
 	   -0.0000,	   -0.0030,	   -0.0026,	    0.0037,	    0.0082,	   -0.0000,	   -0.0151,
-	   -0.0124,	    0.0165,	    0.0354,	   -0.0001,	   -0.0647,	   -0.0570,	    0.0900,
-	    0.2998,	    0.3999,		0.2998,	    0.0900,	   -0.0570,	   -0.0647,	   -0.0001,
+	   -0.0124,	    0.0165,	    0.0354,	   -0.0001,	   -0.0657,	   -0.0570,	    0.0900,
+	    0.2998,	    0.3999,		0.2998,	    0.0900,	   -0.0570,	   -0.0657,	   -0.0001,
 	    0.0354,	    0.0165,	   -0.0124,	   -0.0151,    -0.0000,     0.0082,		0.0037,
 	   -0.0026,	   -0.0030,	   -0.0000,	    0.0014,	    0.0006,	   -0.0003,	   -0.0004,
 	   -0.0000,	    0.0001,	    0.0000,	   -0.0000,	   -0.0000,    -0.0000,		0.0000,
@@ -25,22 +29,26 @@ float unfilteredCoef[65] = {1,1,1,1,1,1,1,1,1,1,
 						1,1,1,1,1,1,1,1,1,1,
 						1,1,1,1,1,1,1,1,1,1,
 						1,1,1,1,1};
-int16_t buffer[64] = {0,0,0,0,0,0,0,0,0,0,0,0,
-					  0,0,0,0,0,0,0,0,0,0,0,0,
-					  0,0,0,0,0,0,0,0,0,0,0,0,
-					  0,0,0,0,0,0,0,0,0,0,0,0,
-					  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+float lowPass1[16] = {0.0047, -0.0245,0.0017,0.0475,
+		   -0.0236,-0.1019,0.1137,
+		    0.4761,0.4761, 0.1137,-0.1019,-0.0236,
+		    0.0475,0.0017,-0.0245,0.0047};
+float lowPass2[3] = {0.3333, 0.3333, 0.3333};
 
-
+// setup global buffer
+int bufferLength = 0;
+int readBuffer = 1;
+int writeIndex = 0;
+int readFilter = 0;
 
 //---------------------------------------------------------
 //---------------------------------------------------------
 void main(void)
 {
 	int i = 0;
-	for(i=0;i<64;i++){
+	for(i=0;i<65;i++){
 		buffer[i]=0;
-					 }
+	}
 
 initAll();
 return; // return to BIOS scheduler
@@ -51,8 +59,10 @@ void dipPRD(void)
 {
 uint8_t dip_status8;
 uint8_t dip_status1;
+uint8_t dip_status3;
 DIP_get(DIP_8, &dip_status8);
 DIP_get(DIP_1, &dip_status1);
+DIP_get(DIP_3, &dip_status3);
 
 if(dip_status8) // switch 8 acts as a mute switch
 	{
@@ -75,6 +85,13 @@ else
 	filterOn = false;
 }
 
+if(dip_status3)
+{
+	dist = true;
+}else{
+	dist = false;
+}
+
 }
 
 
@@ -84,17 +101,62 @@ void audioHWI(void)
 {
 int16_t s16 = 0;
 int16_t outputSample = 0; // initialise sample variable
+int16_t signal = 0;
+
 
 int i = 0;
-int j = 0;
-s16 = read_audio_sample(); // get current input sample
-buffer[0] = s16; // put input sample at 0 spot of buffer
 
-	for(i=1;i<64;i++){ // move every item in buffer one to the right
-			buffer[i] = buffer[i-1];
+
+s16 = read_audio_sample(); // get current input sample
+
+writeIndex = ((writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER);
+buffer[writeIndex] = s16;
+//writeIndex++;
+//if (writeIndex == 65)
+//{
+//    writeIndex = 0;
+//}
+//
+//readBuffer++;
+//if (readBuffer == 65)
+//{
+//    readBuffer = 0;
+//
+//}
+
+//for(i=0;i<15;i++){
+//	z[i] = z[i+1];
+//}
+//z[15] = readBuffer;
+
+
+// implement buffer and convolution
+
+if(filterOn){
+	for(i=0;i<16;i++){
+//		j = z[15-i];
+//		filteredSignal = 0;
+//		filteredSignal = buffer[j]*lowPass1[15-i];
+//		signal = filteredSignal + signal;
+	signal += buffer[(writeIndex + i) % SIZE_OF_BUFFER] * lowPass1[i];
+
 	}
 
-outputSample = buffer[64];
+}
+
+else{
+//signal = buffer[readBuffer];
+signal = s16;
+}
+
+// implement distortion algorithm
+if(dist){
+
+}
+else{
+}
+
+outputSample = signal;
 
 	if (MCASP->RSLOT)
 	{
@@ -107,5 +169,4 @@ outputSample = buffer[64];
 	}
 
 write_audio_sample(outputSample);
-buffer[0] = 0; // 0 first sample for placing in buffer
 }
