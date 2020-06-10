@@ -4,35 +4,20 @@
 #include "hellocfg.h" //BIOS include file
 #include "framework.h"
 #include "stdbool.h"
-#define SIZE_OF_BUFFER 65;
+#include "stdio.h"
+#include "math.h"
+#define SIZE_OF_BUFFER 65
 
 int16_t volatile mask = 0xffff;
 int16_t buffer[65];
 bool filterOn = false;
 bool dist = false;
-float filterCoef[65] = {
-	   -0.0000,	    0.0000,	    0.0000,
-	   -0.0000,	   -0.0000,	    0.0000,	    0.0000,	   -0.0000,	   -0.0000,	   -0.0000,
-	    0.0000,	    0.0001,	   -0.0000,	   -0.0004,	   -0.0003,	    0.0006,	    0.0014,
-	   -0.0000,	   -0.0030,	   -0.0026,	    0.0037,	    0.0082,	   -0.0000,	   -0.0151,
-	   -0.0124,	    0.0165,	    0.0354,	   -0.0001,	   -0.0657,	   -0.0570,	    0.0900,
-	    0.2998,	    0.3999,		0.2998,	    0.0900,	   -0.0570,	   -0.0657,	   -0.0001,
-	    0.0354,	    0.0165,	   -0.0124,	   -0.0151,    -0.0000,     0.0082,		0.0037,
-	   -0.0026,	   -0.0030,	   -0.0000,	    0.0014,	    0.0006,	   -0.0003,	   -0.0004,
-	   -0.0000,	    0.0001,	    0.0000,	   -0.0000,	   -0.0000,    -0.0000,		0.0000,
-	    0.0000,	   -0.0000,    -0.0000,	    0.0000,	    0.0000,    -0.0000
-};
-float unfilteredCoef[65] = {1,1,1,1,1,1,1,1,1,1,
-						1,1,1,1,1,1,1,1,1,1,
-						1,1,1,1,1,1,1,1,1,1,
-						1,1,1,1,1,1,1,1,1,1,
-						1,1,1,1,1,1,1,1,1,1,
-						1,1,1,1,1,1,1,1,1,1,
-						1,1,1,1,1};
+
 float lowPass1[16] = {0.0047, -0.0245,0.0017,0.0475,
 		   -0.0236,-0.1019,0.1137,
 		    0.4761,0.4761, 0.1137,-0.1019,-0.0236,
 		    0.0475,0.0017,-0.0245,0.0047};
+
 float lowPass2[3] = {0.3333, 0.3333, 0.3333};
 
 // setup global buffer
@@ -109,52 +94,34 @@ int i = 0;
 
 s16 = read_audio_sample(); // get current input sample
 
-writeIndex = ((writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER);
+writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
 buffer[writeIndex] = s16;
-//writeIndex++;
-//if (writeIndex == 65)
-//{
-//    writeIndex = 0;
-//}
-//
-//readBuffer++;
-//if (readBuffer == 65)
-//{
-//    readBuffer = 0;
-//
-//}
 
-//for(i=0;i<15;i++){
-//	z[i] = z[i+1];
-//}
-//z[15] = readBuffer;
+// implement distortion algorithm
+if(dist){
+	if(buffer[writeIndex] > 2/3 || buffer[writeIndex] < -2/3){
+	buffer[writeIndex] = ((3*buffer[writeIndex])/2)*(1-((buffer[writeIndex]^2)/3))/100 + buffer[writeIndex];
+	}
 
+}
 
 // implement buffer and convolution
 
 if(filterOn){
-	for(i=0;i<16;i++){
-//		j = z[15-i];
-//		filteredSignal = 0;
-//		filteredSignal = buffer[j]*lowPass1[15-i];
-//		signal = filteredSignal + signal;
-	signal += buffer[(writeIndex + i) % SIZE_OF_BUFFER] * lowPass1[i];
+	for(i=0;i<3;i++){
+
+	signal += buffer[(writeIndex + i) % SIZE_OF_BUFFER] * lowPass2[3-i];
 
 	}
 
 }
 
 else{
-//signal = buffer[readBuffer];
-signal = s16;
+
+signal = buffer[writeIndex];
 }
 
-// implement distortion algorithm
-if(dist){
 
-}
-else{
-}
 
 outputSample = signal;
 
