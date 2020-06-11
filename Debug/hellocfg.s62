@@ -5,7 +5,7 @@
 ;; INPUT hello.cdb
 
 ;; CONFIGURATION/VERSION INFORMATION
-	.asg "Wed Jun 10 15:07:24 2020", VERS$DATE
+	.asg "Thu Jun 11 14:38:41 2020", VERS$DATE
 
 ;; PROLOGUE
 	.include hellocfg.h62

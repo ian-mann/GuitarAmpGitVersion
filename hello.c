@@ -6,10 +6,11 @@
 #include "stdbool.h"
 #include "stdio.h"
 #include "math.h"
-#define SIZE_OF_BUFFER 65
+#include "data.h"
+#define SIZE_OF_BUFFER 2048
 
 int16_t volatile mask = 0xffff;
-int16_t buffer[65];
+int16_t buffer[SIZE_OF_BUFFER];
 bool filterOn = false;
 bool dist = false;
 
@@ -29,9 +30,9 @@ int readFilter = 0;
 //---------------------------------------------------------
 //---------------------------------------------------------
 void main(void)
-{
+ {
 	int i = 0;
-	for(i=0;i<65;i++){
+	for(i=0;i<SIZE_OF_BUFFER;i++){
 		buffer[i]=0;
 	}
 
@@ -99,18 +100,14 @@ buffer[writeIndex] = s16;
 
 // implement distortion algorithm
 if(dist){
-	if(buffer[writeIndex] > 2/3 || buffer[writeIndex] < -2/3){
-	buffer[writeIndex] = ((3*buffer[writeIndex])/2)*(1-((buffer[writeIndex]^2)/3))/100 + buffer[writeIndex];
-	}
-
 }
 
 // implement buffer and convolution
 
 if(filterOn){
-	for(i=0;i<3;i++){
+	for(i=0;i<2048;i++){
 
-	signal += buffer[(writeIndex + i) % SIZE_OF_BUFFER] * lowPass2[3-i];
+	signal += buffer[(writeIndex + i) % SIZE_OF_BUFFER] * b_fir[2048-i];
 
 	}
 
