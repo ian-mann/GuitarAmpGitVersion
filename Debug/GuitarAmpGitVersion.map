@@ -1,7 +1,11 @@
 ******************************************************************************
                TMS320C6x Linker PC v7.4.18                     
 ******************************************************************************
+<<<<<<< Updated upstream
 >> Linked Thu Jun 04 10:01:34 2020
+=======
+>> Linked Tue Jun 16 10:31:32 2020
+>>>>>>> Stashed changes
 
 OUTPUT FILE NAME:   <GuitarAmpGitVersion.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 11812b80
@@ -11,7 +15,11 @@ MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
+<<<<<<< Updated upstream
   IRAM                  11800000   00040000  000146e4  0002b91c  RWIX
+=======
+  IRAM                  11800000   00040000  000148c1  0002b73f  RWIX
+>>>>>>> Stashed changes
   CACHE_L1P             11e00000   00008000  00000000  00008000  RWIX
   CACHE_L1D             11f00000   00008000  00000000  00008000  RWIX
   L3_CBA_RAM            80000000   00020000  00000000  00020000  RWIX
@@ -28,7 +36,11 @@ section   page    origin      length       input sections
 
 .data      0    11800000    00000000     UNINITIALIZED
 
+<<<<<<< Updated upstream
 .text      0    11800000    00007ae0     
+=======
+.text      0    11800000    00007c40     
+>>>>>>> Stashed changes
                   11800000    00000c20     evmc6748_bsl.lib : evmc6748.obj (.text)
                   11800c20    00000620     framework.obj (.text)
                   11801240    000005a0     rts6740.lib : divd.obj (.text:__divd)
@@ -46,6 +58,7 @@ section   page    origin      length       input sections
                   11804160    00000260                 : imath64.obj (.text:__divull)
                   118043c0    00000260                 : _printfi.obj (.text:__pconv_e)
                   11804620    00000240                 : _printfi.obj (.text:__pproc_diouxp)
+<<<<<<< Updated upstream
                   11804860    00000220                 : _printfi.obj (.text:__pproc_str)
                   11804a80    00000220                 : fputc.obj (.text:_fputc)
                   11804ca0    00000200                 : _printfi.obj (.text:__pconv_g)
@@ -269,6 +282,220 @@ section   page    origin      length       input sections
 
 .mem       0    1180fffc    00000004     UNINITIALIZED
                   1180fffc    00000004     hellocfg.obj (.mem)
+=======
+                  11804860    00000240     hello.obj (.text)
+                  11804aa0    00000220     rts6740.lib : _printfi.obj (.text:__pproc_str)
+                  11804cc0    00000220                 : fputc.obj (.text:_fputc)
+                  11804ee0    00000200                 : _printfi.obj (.text:__pconv_g)
+                  118050e0    00000200                 : setvbuf.obj (.text:_setvbuf)
+                  118052e0    000001e0     evmc6748_bsl.lib : evmc6748_led.obj (.text)
+                  118054c0    000001c0     rts6740.lib : _printfi.obj (.text:__mcpy)
+                  11805680    000001a0                 : imath40.obj (.text:__divul)
+                  11805820    00000180                 : trgdrv.obj (.text:_HOSTrename)
+                  118059a0    00000160     evmc6748_bsl.lib : evmc6748_dip.obj (.text)
+                  11805b00    00000140     rts6740.lib : _printfi.obj (.text:__pproc_fflags)
+                  11805c40    00000140                 : lowlev.obj (.text:_getdevice)
+                  11805d80    00000120                 : fclose.obj (.text:__closefile)
+                  11805ea0    00000120                 : _printfi.obj (.text:__ltostr)
+                  11805fc0    00000120                 : fseek.obj (.text:_fseek)
+                  118060e0    00000100                 : trgdrv.obj (.text:_HOSTlseek)
+                  118061e0    00000100                 : _io_perm.obj (.text:__wrt_ok)
+                  118062e0    00000100                 : sinit.obj (.text:_call_dtors)
+                  118063e0    000000e0                 : trgdrv.obj (.text:_HOSTopen)
+                  118064c0    000000e0                 : trgdrv.obj (.text:_HOSTread)
+                  118065a0    000000e0                 : atoi.obj (.text:_atoi)
+                  11806680    000000e0                 : lowlev.obj (.text:_close)
+                  11806760    000000e0                 : memset.obj (.text:_memset)
+                  11806840    000000e0                 : printf.obj (.text:_printf)
+                  11806920    000000c0                 : trgdrv.obj (.text:_HOSTunlink)
+                  118069e0    000000c0                 : trgdrv.obj (.text:_HOSTwrite)
+                  11806aa0    000000c0                 : _printfi.obj (.text:__div)
+                  11806b60    000000c0                 : divu.obj (.text:__divu)
+                  11806c20    000000c0                 : fflush.obj (.text:__doflush)
+                  11806ce0    000000c0                 : remi.obj (.text:__remi)
+                  11806da0    000000c0                 : atexit.obj (.text:_atexit)
+                  11806e60    000000c0                 : ltoa.obj (.text:_ltoa)
+                  11806f20    000000c0     bios.a674 : tsk_stup.o674 (.text)
+                  11806fe0    000000a0     rts6740.lib : trgdrv.obj (.text:_HOSTclose)
+                  11807080    000000a0                 : fopen.obj (.text:__cleanup)
+                  11807120    000000a0                 : imath40.obj (.text:__divli)
+                  118071c0    000000a0                 : _printfi.obj (.text:__ecpy)
+                  11807260    000000a0                 : _printfi.obj (.text:__fcpy)
+                  11807300    000000a0                 : fixdli.obj (.text:__fixdli)
+                  118073a0    000000a0                 : _printfi.obj (.text:__pconv_f)
+                  11807440    000000a0                 : lowlev.obj (.text:_finddevice)
+                  118074e0    000000a0                 : lowlev.obj (.text:_lseek)
+                  11807580    000000a0                 : memcpy64.obj (.text:_memcpy)
+                  11807620    000000a0                 : lowlev.obj (.text:_write)
+                  118076c0    00000080                 : fltlid.obj (.text:__fltlid)
+                  11807740    00000080                 : llshift.obj (.text:__llshl)
+                  118077c0    00000080                 : trgmsg.obj (.text:_readmsg)
+                  11807840    00000080                 : lowlev.obj (.text:_unlink)
+                  118078c0    00000060                 : imath64.obj (.text:__subcull)
+                  11807920    00000060                 : memccpy.obj (.text:_memccpy)
+                  11807980    00000060                 : trgmsg.obj (.text:_writemsg)
+                  118079e0    00000040                 : sinit.obj (.text:___add_dtor)
+                  11807a20    00000040                 : isinf.obj (.text:___isinf)
+                  11807a60    00000040                 : _printfi.obj (.text:___isnan)
+                  11807aa0    00000040                 : frcmpyd_div.obj (.text:__frcmpyd_div)
+                  11807ae0    00000040                 : llshift.obj (.text:__llshru)
+                  11807b20    00000040                 : imath40.obj (.text:__remli)
+                  11807b60    00000020                 : negll.obj (.text:__negll)
+                  11807b80    00000020                 : _lock.obj (.text:__nop)
+                  11807ba0    00000020                 : printf.obj (.text:__outc)
+                  11807bc0    00000020                 : printf.obj (.text:__outs)
+                  11807be0    00000020                 : _lock.obj (.text:__register_lock)
+                  11807c00    00000020                 : _lock.obj (.text:__register_unlock)
+                  11807c20    00000020                 : remove.obj (.text:_remove)
+
+.bios      0    11807c40    000042e0     
+                  11807c40    000005c0     lnkrtdx.a674 : rtdx.o674 (.bios)
+                  11808200    00000580     bios.a674 : exc.o674 (.bios)
+                  11808780    000004e0               : hwi_disp_asm.o674 (.bios)
+                  11808c60    000004c0               : swi.o674 (.bios)
+                  11809120    00000380               : prd.o674 (.bios)
+                  118094a0    00000280               : malloc.o674 (.bios)
+                  11809720    00000280               : rta.o674 (.bios)
+                  118099a0    00000240               : knl_run.o674 (.bios)
+                  11809be0    00000200               : mem_allo.o674 (.bios:.near)
+                  11809de0    00000200               : knl_tick.o674 (.bios)
+                  11809fe0    000001e0               : mem_free.o674 (.bios:.near)
+                  1180a1c0    000001e0               : exc_asm.o674 (.bios)
+                  1180a3a0    000001e0               : pip.o674 (.bios)
+                  1180a580    000001e0               : sem_pend.o674 (.bios)
+                  1180a760    000001a0               : sem_dopo.o674 (.bios)
+                  1180a900    000001a0               : tsk_setu.o674 (.bios)
+                  1180aaa0    000001a0     bios6748.a674 : clk.o674 (.bios)
+                  1180ac40    00000180     bios.a674 : knl_swit.o674 (.bios)
+                  1180adc0    00000140               : autoinit.o674 (.bios)
+                  1180af00    00000140               : tsk_exit.o674 (.bios)
+                  1180b040    00000140     bios6748.a674 : bcache_init.o674 (.bios)
+                  1180b180    00000120     bios.a674 : gbl_cacheinit64P.o674 (.bios)
+                  1180b2a0    00000120               : knl_chec.o674 (.bios)
+                  1180b3c0    00000120               : tsk_stup.o674 (.bios)
+                  1180b4e0    000000e0               : sem_post_asm.o674 (.bios)
+                  1180b5c0    000000c0               : knl_exit.o674 (.bios)
+                  1180b680    000000a0               : sem_post.o674 (.bios)
+                  1180b720    000000a0               : sys_exit.o674 (.bios)
+                  1180b7c0    00000080               : knl_ipos.o674 (.bios)
+                  1180b840    00000080               : knl_post.o674 (.bios)
+                  1180b8c0    00000080               : lck.o674 (.bios)
+                  1180b940    00000080               : log.o674 (.bios)
+                  1180b9c0    00000080     bios6748.a674 : idl_cal.o674 (.bios)
+                  1180ba40    00000060     bios.a674 : sys_erro.o674 (.bios:.near)
+                  1180baa0    00000060               : fxn.o674 (.bios)
+                  1180bb00    00000060               : hwi_c.o674 (.bios)
+                  1180bb60    00000060               : idl_busy.o674 (.bios)
+                  1180bbc0    00000060               : sem_pend_counting.o674 (.bios)
+                  1180bc20    00000060               : sts.o674 (.bios)
+                  1180bc80    00000060               : sys_abor.o674 (.bios)
+                  1180bce0    00000060     bios6748.a674 : clk_meas.o674 (.bios)
+                  1180bd40    00000040     bios.a674 : idl_stub.o674 (.bios)
+                  1180bd80    00000040               : rta_andn.o674 (.bios)
+                  1180bdc0    00000040               : utl_doab.o674 (.bios)
+                  1180be00    00000040               : utl_putc.o674 (.bios)
+                  1180be40    00000020               : fxn_c.o674 (.bios)
+                  1180be60    00000020               : gbl_vers.o674 (.bios)
+                  1180be80    00000020               : idl.o674 (.bios)
+                  1180bea0    00000020               : sts_set.o674 (.bios)
+                  1180bec0    00000020               : utl_doer.o674 (.bios)
+                  1180bee0    00000020               : utl_halt.o674 (.bios)
+                  1180bf00    00000020     bios6748.a674 : clk_gethtime.o674 (.bios)
+
+.IRAM$heap 
+*          0    1180bf20    00002000     UNINITIALIZED
+                  1180bf20    00002000     --HOLE--
+
+.cinit     0    1180df20    0000132c     
+                  1180df20    000006c4     hellocfg.obj (.cinit)
+                  1180e5e4    00000004     --HOLE-- [fill = 0]
+                  1180e5e8    000002b4     hello.obj (.cinit)
+                  1180e89c    00000004     --HOLE-- [fill = 0]
+                  1180e8a0    0000026c     bios.a674 : biosdata.o674 (.cinit)
+                  1180eb0c    00000004     --HOLE-- [fill = 0]
+                  1180eb10    000001a4               : knl.o674 (.cinit)
+                  1180ecb4    00000004     --HOLE-- [fill = 0]
+                  1180ecb8    000000b0               : swi.o674 (.cinit)
+                  1180ed68    00000080               : tsk.o674 (.cinit)
+                  1180ede8    00000068     rtdx64xplus.lib : rtdx_mon.o64P (.cinit)
+                  1180ee50    00000060     bios.a674 : tsk_stup.o674 (.cinit)
+                  1180eeb0    0000005c     lnkrtdx.a674 : rtdx.o674 (.cinit)
+                  1180ef0c    00000004     --HOLE-- [fill = 0]
+                  1180ef10    0000005c     rts6740.lib : defs.obj (.cinit)
+                  1180ef6c    00000004     --HOLE-- [fill = 0]
+                  1180ef70    0000005c                 : lowlev.obj (.cinit)
+                  1180efcc    00000004     --HOLE-- [fill = 0]
+                  1180efd0    0000004c     bios.a674 : rta.o674 (.cinit)
+                  1180f01c    00000004     --HOLE-- [fill = 0]
+                  1180f020    0000004c     rtdx64xplus.lib : buffer1.o64P (.cinit)
+                  1180f06c    00000004     --HOLE-- [fill = 0]
+                  1180f070    0000003c     bios.a674 : exc.o674 (.cinit)
+                  1180f0ac    00000004     --HOLE-- [fill = 0]
+                  1180f0b0    00000034               : hwi.o674 (.cinit)
+                  1180f0e4    00000004     --HOLE-- [fill = 0]
+                  1180f0e8    0000002c               : utl_putc.o674 (.cinit)
+                  1180f114    00000004     --HOLE-- [fill = 0]
+                  1180f118    0000002c     rts6740.lib : exit.obj (.cinit)
+                  1180f144    00000004     --HOLE-- [fill = 0]
+                  1180f148    00000024     bios.a674 : obj_init.o674 (.cinit)
+                  1180f16c    00000004     --HOLE-- [fill = 0]
+                  1180f170    0000001c               : exc_asm.o674 (.cinit)
+                  1180f18c    00000004     --HOLE-- [fill = 0]
+                  1180f190    0000001c               : sys.o674 (.cinit)
+                  1180f1ac    00000004     --HOLE-- [fill = 0]
+                  1180f1b0    0000001c     rts6740.lib : _lock.obj (.cinit)
+                  1180f1cc    00000004     --HOLE-- [fill = 0]
+                  1180f1d0    0000001c                 : atexit.obj (.cinit)
+                  1180f1ec    00000004     --HOLE-- [fill = 0]
+                  1180f1f0    00000018     bios.a674 : knl_tick.o674 (.cinit)
+                  1180f208    0000000c               : idl_busy.o674 (.cinit)
+                  1180f214    00000004     --HOLE-- [fill = 0]
+                  1180f218    0000000c               : knl_swit.o674 (.cinit)
+                  1180f224    00000004     --HOLE-- [fill = 0]
+                  1180f228    0000000c     rts6740.lib : fopen.obj (.cinit)
+                  1180f234    00000004     --HOLE-- [fill = 0]
+                  1180f238    0000000c                 : sinit.obj (.cinit)
+                  1180f244    00000004     --HOLE-- [fill = 0]
+                  1180f248    00000004     (.pad.cinit) [fill = 0]
+
+.args      0    1180f24c    00000004     
+                  1180f24c    00000004     --HOLE-- [fill = 0]
+
+.far       0    1180f250    00000b38     UNINITIALIZED
+                  1180f250    00000324     rts6740.lib : defs.obj (.far)
+                  1180f574    00000004     bios6748.a674 : clk_data.o674 (.far)
+                  1180f578    00000304     hello.obj (.far)
+                  1180f87c    00000004     rts6740.lib : fopen.obj (.far)
+                  1180f880    00000188                 : atexit.obj (.far)
+                  1180fa08    0000011c                 : lowlev.obj (.far)
+                  1180fb24    00000004                 : sinit.obj (.far)
+                  1180fb28    000000d8     bios.a674 : knl.o674 (.far)
+                  1180fc00    0000005c               : tsk.o674 (.far)
+                  1180fc5c    00000004     --HOLE--
+                  1180fc60    00000054               : obj_init.o674 (.far)
+                  1180fcb4    00000050               : tsk_stup.o674 (.far)
+                  1180fd04    00000004     --HOLE--
+                  1180fd08    00000020               : sys.o674 (.far)
+                  1180fd28    00000018     rtdx64xplus.lib : rtdx_mon.o64P (.far)
+                  1180fd40    00000010     bios.a674 : exc.o674 (.far)
+                  1180fd50    00000010               : knl_tick.o674 (.far)
+                  1180fd60    0000000c               : utl_putc.o674 (.far)
+                  1180fd6c    0000000c     rts6740.lib : exit.obj (.far)
+                  1180fd78    00000008                 : _lock.obj (.far)
+                  1180fd80    00000008                 : trgdrv.obj (.far)
+
+.trace     0    1180fd88    00000200     
+                  1180fd88    00000200     --HOLE-- [fill = 00000000]
+
+.tsk       0    1180ff88    00000060     UNINITIALIZED
+                  1180ff88    00000060     hellocfg.obj (.tsk)
+
+.hst1      0    1180ffe8    00000010     UNINITIALIZED
+                  1180ffe8    00000010     hellocfg.obj (.hst1)
+
+.clk       0    1180fff8    00000008     UNINITIALIZED
+                  1180fff8    00000008     hellocfg.obj (.clk)
+>>>>>>> Stashed changes
 
 .trace$buf 
 *          0    11810000    00001000     UNINITIALIZED
@@ -294,9 +521,18 @@ section   page    origin      length       input sections
                   11811f60    00000020                     : buffer2.o64P (.rtdx_text:_RTDX_Buffer_Read)
                   11811f80    00000020                     : buffer1.o64P (.rtdx_text:_RTDX_Buffer_Write)
                   11811fa0    00000020                     : intr_tgt.o64P (.rtdx_text)
+<<<<<<< Updated upstream
 
 .hst       0    11811fc0    0000003c     UNINITIALIZED
                   11811fc0    0000003c     hellocfg.obj (.hst)
+=======
+
+.hst       0    11811fc0    0000003c     UNINITIALIZED
+                  11811fc0    0000003c     hellocfg.obj (.hst)
+
+.mem       0    11811ffc    00000004     UNINITIALIZED
+                  11811ffc    00000004     hellocfg.obj (.mem)
+>>>>>>> Stashed changes
 
 .LOG_system$buf 
 *          0    11812000    00000800     UNINITIALIZED
@@ -308,6 +544,7 @@ section   page    origin      length       input sections
                   11812c40    000000c0               : mem_init.o674 (.sysinit)
                   11812d00    00000060               : tsk_init.o674 (.sysinit)
 
+<<<<<<< Updated upstream
 .hst1      0    11812d60    00000010     UNINITIALIZED
                   11812d60    00000010     hellocfg.obj (.hst1)
 
@@ -399,14 +636,123 @@ section   page    origin      length       input sections
 
 .clk       0    118146e8    00000008     UNINITIALIZED
                   118146e8    00000008     hellocfg.obj (.clk)
+=======
+.prd       0    11812d60    00000020     UNINITIALIZED
+                  11812d60    00000020     hellocfg.obj (.prd)
+
+.rtdx_data 
+*          0    11812d80    000004f4     UNINITIALIZED
+                  11812d80    00000080     --HOLE--
+                  11812e00    00000410     hellocfg.obj (.rtdx_data)
+                  11813210    00000044     rtdx64xplus.lib : rtdx_mon.o64P (.rtdx_data)
+                  11813254    00000020                     : buffer1.o64P (.rtdx_data)
+
+.const     0    11813278    00000419     
+                  11813278    00000193     bios.a674 : exc.o674 (.const:.string)
+                  1181340b    00000004               : mem_allo.o674 (.const:.string)
+                  1181340f    00000001     --HOLE-- [fill = 0]
+                  11813410    00000101     rts6740.lib : ctype.obj (.const:.string:__ctypes_)
+                  11813511    00000004     bios.a674 : mem_free.o674 (.const:.string)
+                  11813515    00000002     rts6740.lib : fputs.obj (.const:.string)
+                  11813517    00000001     --HOLE-- [fill = 0]
+                  11813518    00000080     evmc6748_bsl.lib : evmc6748.obj (.const:_bitval_u32)
+                  11813598    0000004e     bios.a674 : tsk_stup.o674 (.const:.string)
+                  118135e6    00000002     --HOLE-- [fill = 0]
+                  118135e8    00000040     evmc6748_bsl.lib : evmc6748.obj (.const:.string)
+                  11813628    00000023     bios.a674 : utl_doab.o674 (.const:.string)
+                  1181364b    00000023     rts6740.lib : _printfi.obj (.const:.string)
+                  1181366e    00000022     bios.a674 : utl_doer.o674 (.const:.string)
+                  11813690    00000001               : tsk.o674 (.const:.string)
+
+.printf    0    11813691    00000076     COPY SECTION
+                  11813691    00000076     hellocfg.obj (.printf)
+
+.TSK_idle$stk 
+*          0    11813698    00000400     UNINITIALIZED
+                  11813698    00000400     hellocfg.obj (.TSK_idle$stk)
+
+.stack     0    11813a98    00000400     UNINITIALIZED
+                  11813a98    00000400     --HOLE--
+
+.bss       0    11813e98    0000039c     UNINITIALIZED
+                  11813e98    00000100     bios.a674 : hwi_disp_asm.o674 (.bss)
+                  11813f98    000000cc               : biosdata.o674 (.bss)
+                  11814064    0000009c               : swi.o674 (.bss)
+                  11814100    00000048               : knl.o674 (.bss)
+                  11814148    00000028     hellocfg.obj (.bss)
+                  11814170    00000020     bios.a674 : exc_asm.o674 (.bss)
+                  11814190    00000018               : hwi.o674 (.bss)
+                  118141a8    00000018     hello.obj (.bss)
+                  118141c0    00000018     lnkrtdx.a674 : rtdx.o674 (.bss)
+                  118141d8    00000010     bios.a674 : exc.o674 (.bss)
+                  118141e8    00000010     rtdx64xplus.lib : buffer1.o64P (.bss)
+                  118141f8    00000010                     : rtdx_mon.o64P (.bss)
+                  11814208    0000000c     bios.a674 : tsk.o674 (.bss)
+                  11814214    00000008               : clk_data.o674 (.bss)
+                  1181421c    00000008               : sys.o674 (.bss)
+                  11814224    00000004               : clk_data2.o674 (.bss)
+                  11814228    00000004               : idl_busy.o674 (.bss)
+                  1181422c    00000004               : mem_asm.o674 (.bss)
+                  11814230    00000004     evmc6748_bsl.lib : evmc6748_i2c.obj (.bss)
+
+.cio       0    11814238    00000120     UNINITIALIZED
+                  11814238    00000120     rts6740.lib : trgmsg.obj (.cio)
+
+.swi       0    11814358    00000058     UNINITIALIZED
+                  11814358    00000058     hellocfg.obj (.swi)
+
+.sts       0    118143b0    00000050     
+                  118143b0    00000050     hellocfg.obj (.sts)
+
+.hwi_vec   0    11814400    00000200     
+                  11814400    00000200     hellocfg.obj (.hwi_vec)
+
+.hst0      0    11814600    00000100     UNINITIALIZED
+                  11814600    00000100     hellocfg.obj (.hst0)
+
+.pip       0    11814700    000000c8     UNINITIALIZED
+                  11814700    000000c8     hellocfg.obj (.pip)
+
+.gblinit   0    118147c8    0000004c     
+                  118147c8    0000004c     hellocfg.obj (.gblinit)
+
+.switch    0    11814814    00000044     
+                  11814814    00000024     evmc6748_bsl.lib : evmc6748_gpio.obj (.switch:_getRegisterBankAndBit)
+                  11814838    00000020                      : evmc6748_dip.obj (.switch:_convertDipToI2CGpio)
+
+.log       0    11814858    00000030     
+                  11814858    00000030     hellocfg.obj (.log)
+
+.idl       0    11814888    00000010     UNINITIALIZED
+                  11814888    00000010     hellocfg.obj (.idl)
+
+.idlcal    0    11814898    00000010     UNINITIALIZED
+                  11814898    00000010     hellocfg.obj (.idlcal)
+
+.sys       0    118148a8    00000010     UNINITIALIZED
+                  118148a8    00000010     hellocfg.obj (.sys)
+
+.pinit     0    118148b8    0000000c     
+                  118148b8    00000004     rtdx64xplus.lib : buffer1.o64P (.pinit)
+                  118148bc    00000004                     : rtdx_mon.o64P (.pinit)
+                  118148c0    00000004     --HOLE-- [fill = 0]
+
+.trcdata   0    118148c4    0000000c     
+                  118148c4    0000000c     bios.a674 : trc.o674 (.trcdata)
+>>>>>>> Stashed changes
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
 
 address    name
 --------   ----
+<<<<<<< Updated upstream
 11813a78   $bss
 11813a78   .bss
+=======
+11813e98   $bss
+11813e98   .bss
+>>>>>>> Stashed changes
 11800000   .data
 11800000   .text
 118129c4   BIOS$$CLKOFF
@@ -415,15 +761,24 @@ address    name
 11812a30   BIOS_start
 00000000   BUF$
 00000001   BUF_ENABLED
+<<<<<<< Updated upstream
 11807878   C$$IO$$
 ffffffff   CACHE_L1D
 ffffffff   CACHE_L1P
 00000001   CLK$
 118146e8   CLK_A_TABBEG
+=======
+118079d8   C$$IO$$
+ffffffff   CACHE_L1D
+ffffffff   CACHE_L1P
+00000001   CLK$
+1180fff8   CLK_A_TABBEG
+>>>>>>> Stashed changes
 00000001   CLK_CALDIV
 00000001   CLK_CALMULT
 000493e0   CLK_COUNTSPMS
 00000004   CLK_COUNTSPMSHIGH
+<<<<<<< Updated upstream
 11813ba0   CLK_D_idletime
 11813b9c   CLK_D_isrhook
 11813b98   CLK_D_tabbeg
@@ -434,6 +789,18 @@ ffffffff   CACHE_L1P
 1180a950   CLK_F_isr
 1180aa90   CLK_F_itime
 11808620   CLK_HOOKFXN
+=======
+11813fc0   CLK_D_idletime
+11813fbc   CLK_D_isrhook
+11813fb8   CLK_D_tabbeg
+11813fb4   CLK_D_timefxn
+00000001   CLK_ENABLEHTIME
+1180bf00   CLK_F_gethtime
+1180aaa0   CLK_F_getltime
+1180aab0   CLK_F_isr
+1180abf0   CLK_F_itime
+11808780   CLK_HOOKFXN
+>>>>>>> Stashed changes
 00000001   CLK_HTIMEDIV
 00000001   CLK_HTIMEMULT
 000493e0   CLK_HTIMEPERLTIME
@@ -447,6 +814,7 @@ ffffffff   CACHE_L1P
 00000000   CLK_PRDHIGH
 01c20000   CLK_REGS
 00000001   CLK_RESETTIMER
+<<<<<<< Updated upstream
 11813b90   CLK_R_time
 00000020   CLK_TCR
 00000000   CLK_TDDR
@@ -456,6 +824,17 @@ ffffffff   CACHE_L1P
 00000005   CLK_TIMMODE
 00000001   CLK_USETIMER
 118146ec   CLK_null
+=======
+11813fb0   CLK_R_time
+00000020   CLK_TCR
+00000000   CLK_TDDR
+00000000   CLK_TDDRHIGH
+1180bf00   CLK_TIMEFXN
+00000000   CLK_TIMERNUM
+00000005   CLK_TIMMODE
+00000001   CLK_USETIMER
+1180fffc   CLK_null
+>>>>>>> Stashed changes
 ffffffff   DDR
 00000000   DEV$
 00000000   DGN$
@@ -596,9 +975,15 @@ ffffffff   ECM_EVTMASK3
 00000061   EVENT97
 00000062   EVENT98
 00000063   EVENT99
+<<<<<<< Updated upstream
 1180b940   FXN_F_nop
 1180b944   FXN_F_run
 1180b980   FXN_F_zero
+=======
+1180baa0   FXN_F_nop
+1180baa4   FXN_F_run
+1180bae0   FXN_F_zero
+>>>>>>> Stashed changes
 00000001   GBL$
 00005205   GBL_A_VERSION
 00000000   GBL_BCACHEREADADDR0
@@ -634,6 +1019,7 @@ ffffffff   GBL_L2MAR192_223
 00000000   GBL_SUPPORTCSL
 0000dbef   GBL_TRCMASKVALUE
 00000000   GBL_USERINIT
+<<<<<<< Updated upstream
 1180bce0   GBL_USERINITFXN
 00000001   GBL_boot
 118146e4   GBL_initdone
@@ -644,22 +1030,43 @@ ffffffff   GBL_L2MAR192_223
 1180bce0   GIO_DELETEFXN
 1180bce0   GIO_PENDFXN
 1180bce0   GIO_POSTFXN
+=======
+1180be40   GBL_USERINITFXN
+00000001   GBL_boot
+118148cc   GBL_initdone
+11813a98   GBL_stackbeg
+11813e97   GBL_stackend
+00000000   GIO$
+1180be40   GIO_CREATEFXN
+1180be40   GIO_DELETEFXN
+1180be40   GIO_PENDFXN
+1180be40   GIO_POSTFXN
+>>>>>>> Stashed changes
 00000000   HOOK$
 00000000   HOOK_KNLID
 00000001   HST$
 11811fc0   HST_A_TABBEG
 11811ffc   HST_A_TABEND
 00000000   HST_DSM
+<<<<<<< Updated upstream
 11813d34   HST_DSMBUFSEG
 00000400   HST_DSMMEMSIZE
 11813c0c   HST_D_chanmask
 11813c10   HST_D_tabbeg
 11813c14   HST_D_tabend
+=======
+11814154   HST_DSMBUFSEG
+00000400   HST_DSMMEMSIZE
+1181402c   HST_D_chanmask
+11814030   HST_D_tabbeg
+11814034   HST_D_tabend
+>>>>>>> Stashed changes
 000000ff   HST_MAXFRAMEALLOWED
 00000040   HST_MAXFRAMESET
 00000000   HST_NONE
 00000001   HST_RTDX
 00000001   HWI$
+<<<<<<< Updated upstream
 11814000   HWI_A_VECS
 00005828   HWI_CFGDISPATCHED
 11813d80   HWI_D_bss
@@ -667,6 +1074,15 @@ ffffffff   GBL_L2MAR192_223
 11813d70   HWI_D_spsave
 00000001   HWI_ENABLE_EXC
 11808620   HWI_F_dispatch
+=======
+11814400   HWI_A_VECS
+00005828   HWI_CFGDISPATCHED
+118141a0   HWI_D_bss
+118141a4   HWI_D_ccmask
+11814190   HWI_D_spsave
+00000001   HWI_ENABLE_EXC
+11808780   HWI_F_dispatch
+>>>>>>> Stashed changes
 00000000   HWI_GENERATE_RESET_VEC
 0000000a   HWI_INT10
 00000000   HWI_INT10$hwi
@@ -706,6 +1122,7 @@ ffffffff   GBL_L2MAR192_223
 00000000   HWI_RESET$hwi
 00000000   HWI_ZEROTAB
 00000001   IDL$
+<<<<<<< Updated upstream
 118146b0   IDL_A_CALBEG
 11812d70   IDL_A_TABBEG
 00000006   IDL_CALIBRERROR
@@ -723,10 +1140,30 @@ ffffffff   GBL_L2MAR192_223
 00000001   IDL_USECLKIDLTIME
 118145e4   IDL_busyObj
 1181004a   IDL_busyObj$avgfmt
+=======
+11814898   IDL_A_CALBEG
+11814888   IDL_A_TABBEG
+00000006   IDL_CALIBRERROR
+1180bd40   IDL_CALIBRFXN
+11814228   IDL_D_busyObj
+11813fa0   IDL_D_calbeg
+11813f9c   IDL_D_calibrate
+11813f98   IDL_D_tabbeg
+11814894   IDL_END
+118148a4   IDL_END$
+1180bb60   IDL_F_busy
+1180b9c0   IDL_F_calibrate
+1180be80   IDL_F_loop
+1180bd40   IDL_F_stub
+00000001   IDL_USECLKIDLTIME
+118143f4   IDL_busyObj
+11813702   IDL_busyObj$avgfmt
+>>>>>>> Stashed changes
 00000001   IDL_busyObj$filter
 00000001   IDL_busyObj$iA
 00000000   IDL_busyObj$iB
 00000001   IDL_busyObj$iC
+<<<<<<< Updated upstream
 11810044   IDL_busyObj$maxfmt
 00000000   IDL_busyObj$operation
 118145e0   IDL_busyObj$stsobj
@@ -751,10 +1188,37 @@ ffffffff   GBL_L2MAR192_223
 11810010   KNL_swi$sts$maxfmt
 118145c0   KNL_swi$sts$stsobj
 11810018   KNL_swi$sts$sumfmt
+=======
+118136fc   IDL_busyObj$maxfmt
+00000000   IDL_busyObj$operation
+118143f0   IDL_busyObj$stsobj
+118136ff   IDL_busyObj$sumfmt
+00000002   IDL_busyObj$unittype
+11814888   IDL_cpuLoad
+11814898   IDL_cpuLoad$
+11814154   IRAM
+1180bf20   IRAM$B
+00002000   IRAM$L
+00000001   ISRC$
+1180ad98   KNL_glue
+11814384   KNL_swi
+00000001   KNL_swi$dorta
+00000002   KNL_swi$ord
+00000000   KNL_swi$pri
+118143d4   KNL_swi$sts
+118136d8   KNL_swi$sts$avgfmt
+00000002   KNL_swi$sts$filter
+00000001   KNL_swi$sts$filtmaxmult
+00000001   KNL_swi$sts$filtsummult
+118136c8   KNL_swi$sts$maxfmt
+118143d0   KNL_swi$sts$stsobj
+118136d0   KNL_swi$sts$sumfmt
+>>>>>>> Stashed changes
 00000000   KNL_swi$sts$unittype
 00000000   KNL_swi$swi
 ffffffff   L3_CBA_RAM
 00000001   LCK$
+<<<<<<< Updated upstream
 11807ae0   LNK_F_checkBufferCall
 11807b60   LNK_F_dataPump
 11807b00   LNK_F_getChanPtr
@@ -783,21 +1247,58 @@ ffffffff   L3_CBA_RAM
 00000001   LOG_ENABLED
 1180b7e0   LOG_F_event
 11814680   LOG_system
+=======
+11807c40   LNK_F_checkBufferCall
+11807cc0   LNK_F_dataPump
+11807c60   LNK_F_getChanPtr
+11807cb8   LNK_F_init
+118081c8   LNK_F_readCallBack
+1181488c   LNK_dataPump
+1181489c   LNK_dataPump$
+118141c4   LNK_dspFrameReadyMask
+118141c0   LNK_dspFrameRequestMask
+11807f40   LNK_newin
+11808074   LNK_newout
+11807cd0   LNK_rcloop
+11807d94   LNK_rdrtry
+118141cc   LNK_readDone
+118141d0   LNK_readFail
+118141c8   LNK_readPend
+11807da4   LNK_rrloop
+118141d4   LNK_writeFail
+11807e70   LNK_wrloop
+11807e64   LNK_wrrtry
+00000001   LOG$
+11814858   LOG_A_TABBEG
+11814888   LOG_A_TABEND
+00000002   LOG_A_TABLEN
+11813fa4   LOG_D_system
+00000001   LOG_ENABLED
+1180b940   LOG_F_event
+11814858   LOG_system
+>>>>>>> Stashed changes
 11812000   LOG_system$buf
 00000000   LOG_system$datatype
 00000000   LOG_system$log
 00000200   LOG_system$size
 00000000   MBX$
 00000001   MEM$
+<<<<<<< Updated upstream
 11813d34   MEM_MALLOCSEG
 00000000   MEM_NULL
 11813d34   MEM_SEGZERO
+=======
+11814154   MEM_MALLOCSEG
+00000000   MEM_NULL
+11814154   MEM_SEGZERO
+>>>>>>> Stashed changes
 00000000   MEM_USEMPC
 00000001   MEM_gNumHeap
 00000000   MSGQ$
 00000000   MSGQ_USEMSGQ
 00000000   OBJ$
 00000000   PIP$
+<<<<<<< Updated upstream
 11814420   PIP_A_TABBEG
 118144e8   PIP_A_TABEND
 00000002   PIP_A_TABLEN
@@ -807,18 +1308,35 @@ ffffffff   L3_CBA_RAM
 1180a2b8   PIP_F_probe
 1180a388   PIP_F_start
 1180a240   PIP_F_take
+=======
+11814700   PIP_A_TABBEG
+118147c8   PIP_A_TABEND
+00000002   PIP_A_TABLEN
+11813fa8   PIP_D_tabbeg
+11813fac   PIP_D_tablen
+1180a418   PIP_F_give
+1180a418   PIP_F_probe
+1180a4e8   PIP_F_start
+1180a3a0   PIP_F_take
+>>>>>>> Stashed changes
 00000064   PIP_OBJSIZE
 00000000   PIP_gNextId
 00000002   PIP_gNumEmbed
 00000000   POOL$
 00000000   POOL_USEPOOL
 00000001   PRD$
+<<<<<<< Updated upstream
 1180ffdc   PRD0
 1180fff8   PRD0$aaa
+=======
+11812d60   PRD0
+11812d7c   PRD0$aaa
+>>>>>>> Stashed changes
 00000000   PRD0$mode
 00000001   PRD0$ord
 000001f4   PRD0$period
 00000000   PRD0$prd
+<<<<<<< Updated upstream
 118145a4   PRD0$sts
 1180ffeb   PRD0$sts$avgfmt
 00000000   PRD0$sts$filter
@@ -856,6 +1374,45 @@ ffffffff   L3_CBA_RAM
 1180fff6   PRD_swi$sts$maxfmt
 118145b0   PRD_swi$sts$stsobj
 1180fffe   PRD_swi$sts$sumfmt
+=======
+118143b4   PRD0$sts
+118136a3   PRD0$sts$avgfmt
+00000000   PRD0$sts$filter
+11813691   PRD0$sts$maxfmt
+118143b0   PRD0$sts$stsobj
+1181369a   PRD0$sts$sumfmt
+00000002   PRD0$sts$unittype
+11812d60   PRD_A_TABBEG
+11812d80   PRD_A_TABEND
+00000001   PRD_A_TABLEN
+11813fe8   PRD_D_cur
+11813fec   PRD_D_elapsed
+11813ff0   PRD_D_prevtim
+11813ff4   PRD_D_scalar
+11813ff8   PRD_D_swihandle
+11813ffc   PRD_D_tabbeg
+11814000   PRD_D_tablen
+11814004   PRD_D_thook
+11813fe4   PRD_D_tick
+11809120   PRD_F_swi
+118093a4   PRD_F_tick
+00000001   PRD_SCALAR
+11814358   PRD_SWIHANDLE
+11809fb4   PRD_THOOKFXN
+1180fff8   PRD_clock
+11814358   PRD_swi
+00000001   PRD_swi$dorta
+00000001   PRD_swi$ord
+00000001   PRD_swi$pri
+118143c4   PRD_swi$sts
+118136be   PRD_swi$sts$avgfmt
+00000002   PRD_swi$sts$filter
+00000001   PRD_swi$sts$filtmaxmult
+00000001   PRD_swi$sts$filtsummult
+118136ae   PRD_swi$sts$maxfmt
+118143c0   PRD_swi$sts$stsobj
+118136b6   PRD_swi$sts$sumfmt
+>>>>>>> Stashed changes
 00000000   PRD_swi$sts$unittype
 00000000   PRD_swi$swi
 00000001   PWRM$
@@ -868,14 +1425,20 @@ ffffffff   L3_CBA_RAM
 00000001   PWRM_PWRM_NUMSLOTS
 00000000   PWRM_PWRM_RESOURCETRACKING
 00000000   PWRM_PWRM_SCALING
+<<<<<<< Updated upstream
 1180bce0   PWRM_PWRM_SHAREDRESOURCEFXN
 1180bce0   PWRM_PWRM_SLOTHOOKFXN
+=======
+1180be40   PWRM_PWRM_SHAREDRESOURCEFXN
+1180be40   PWRM_PWRM_SLOTHOOKFXN
+>>>>>>> Stashed changes
 00000000   PWRM_PWRM_TIMERIDNUM
 00000000   PWRM_PWRM_TIMERINTRMASK
 00000000   PWRM_PWRM_TIMERWUGENMASK
 00000000   PWRM_PWRM_USERRESOURCES
 00000000   PWRM_PWRM_USETIMER
 00000001   QUE$
+<<<<<<< Updated upstream
 11813be8   RTA_D_fromHost
 11813bf0   RTA_D_logval
 11813c00   RTA_D_stsval
@@ -893,10 +1456,30 @@ ffffffff   L3_CBA_RAM
 118096ec   RTA_execute
 11811fc4   RTA_fromHost
 11812d60   RTA_fromHost$buf
+=======
+11814008   RTA_D_fromHost
+11814010   RTA_D_logval
+11814020   RTA_D_stsval
+1181400c   RTA_D_toHost
+1180bd80   RTA_F_andn
+11809800   RTA_F_dispatch
+11809720   RTA_F_getlog
+11809758   RTA_F_getsts
+1180bd98   RTA_F_or
+11809798   RTA_F_readblk
+118097c0   RTA_F_resetmem
+118097b4   RTA_F_writeword
+11814890   RTA_dispatcher
+118148a0   RTA_dispatcher$
+1180984c   RTA_execute
+11811fc4   RTA_fromHost
+1180ffe8   RTA_fromHost$buf
+>>>>>>> Stashed changes
 00000004   RTA_fromHost$framesize
 00000000   RTA_fromHost$hst
 00000001   RTA_fromHost$id
 00000000   RTA_fromHost$mode
+<<<<<<< Updated upstream
 11814420   RTA_fromHost$pipe
 11814450   RTA_fromHost$pipe$aaa
 11814480   RTA_fromHost$pipe$bbb
@@ -906,10 +1489,22 @@ ffffffff   L3_CBA_RAM
 11811fcc   RTA_fromHost$rtdx
 11811fe0   RTA_toHost
 11814320   RTA_toHost$buf
+=======
+11814700   RTA_fromHost$pipe
+11814730   RTA_fromHost$pipe$aaa
+11814760   RTA_fromHost$pipe$bbb
+11814158   RTA_fromHost$pipe$dtab
+11814704   RTA_fromHost$pipe$rd
+11814734   RTA_fromHost$pipe$wr
+11811fcc   RTA_fromHost$rtdx
+11811fe0   RTA_toHost
+11814600   RTA_toHost$buf
+>>>>>>> Stashed changes
 00000040   RTA_toHost$framesize
 00000000   RTA_toHost$hst
 00000000   RTA_toHost$id
 00000001   RTA_toHost$mode
+<<<<<<< Updated upstream
 11814484   RTA_toHost$pipe
 118144b4   RTA_toHost$pipe$aaa
 118144e4   RTA_toHost$pipe$bbb
@@ -920,6 +1515,18 @@ ffffffff   L3_CBA_RAM
 00000001   RTDX$
 00000408   RTDX_BUFMEMSIZE
 11813d34   RTDX_DATAMEMSEG
+=======
+11814764   RTA_toHost$pipe
+11814794   RTA_toHost$pipe$aaa
+118147c4   RTA_toHost$pipe$bbb
+11814164   RTA_toHost$pipe$dtab
+11814768   RTA_toHost$pipe$rd
+11814798   RTA_toHost$pipe$wr
+11811fe8   RTA_toHost$rtdx
+00000001   RTDX$
+00000408   RTDX_BUFMEMSIZE
+11814154   RTDX_DATAMEMSEG
+>>>>>>> Stashed changes
 00000000   RTDX_MODE
 00000001   RTDX_NORMALIZED_HDR
 00000001   RTDX_USERTDX
@@ -927,6 +1534,7 @@ ffffffff   L3_CBA_RAM
 00000000   SEM$
 00000000   SIO$
 00000001   STS$
+<<<<<<< Updated upstream
 118145a0   STS_A_TABBEG
 118145f0   STS_A_TABEND
 1180baec   STS_F_add
@@ -963,6 +1571,44 @@ ffffffff   L3_CBA_RAM
 1180bca0   SYS_PUTCFXN
 118146e0   TRC_R_mask
 118146dc   TRC_cinit
+=======
+118143b0   STS_A_TABBEG
+11814400   STS_A_TABEND
+1180bc4c   STS_F_add
+1180bc20   STS_F_delta
+1180bc68   STS_F_reset
+00000001   SWI$
+11814358   SWI_A_TABBEG
+118143b0   SWI_A_TABEND
+00000002   SWI_A_TABLEN
+1181407c   SWI_D_curfxn
+1181406c   SWI_D_curmask
+11814078   SWI_D_curmbox
+11814070   SWI_D_curset
+11814068   SWI_D_execaddr
+11814084   SWI_D_inswi
+11814074   SWI_D_lock
+11814080   SWI_D_rdybeg
+11814088   SWI_D_rdytab
+11814064   SWI_D_runaddr
+00000000   SWI_EHOOKFXN
+11808e44   SWI_EXECFXN
+11808c60   SWI_F_enable
+11808e44   SWI_F_exec
+11808e6c   SWI_F_iexec
+11808cd0   SWI_F_post
+11808eec   SWI_F_run
+00000000   SWI_IHOOKFXN
+11808eec   SWI_RUNFXN
+00000001   SYS$
+118148a8   SYS$config
+1180bdc0   SYS_ABORTFXN
+1180bec0   SYS_ERRORFXN
+1180bee0   SYS_EXITFXN
+1180be00   SYS_PUTCFXN
+118148c8   TRC_R_mask
+118148c4   TRC_cinit
+>>>>>>> Stashed changes
 00000001   TSK$
 00000000   TSK_NUM_HOOKS
 00000001   TSK_PRIORITY
@@ -970,6 +1616,7 @@ ffffffff   L3_CBA_RAM
 00000000   TSK_STACKSEG
 00000400   TSK_STACKSIZE
 00000000   TSK_SWITCHFXN
+<<<<<<< Updated upstream
 1180bce0   TSK_VCREATEFXN
 1180bce0   TSK_VDELETEFXN
 1180bce0   TSK_VEXITFXN
@@ -986,23 +1633,51 @@ ffffffff   L3_CBA_RAM
 1181002a   TSK_idle$sts$maxfmt
 118145d0   TSK_idle$sts$stsobj
 11810032   TSK_idle$sts$sumfmt
+=======
+1180be40   TSK_VCREATEFXN
+1180be40   TSK_VDELETEFXN
+1180be40   TSK_VEXITFXN
+1180ff94   TSK_idle
+00000000   TSK_idle$ord
+00000000   TSK_idle$pri
+11813698   TSK_idle$stack
+11813a30   TSK_idle$stkptr
+118143e4   TSK_idle$sts
+118136f2   TSK_idle$sts$avgfmt
+00000002   TSK_idle$sts$filter
+00000001   TSK_idle$sts$filtmaxmult
+00000001   TSK_idle$sts$filtsummult
+118136e2   TSK_idle$sts$maxfmt
+118143e0   TSK_idle$sts$stsobj
+118136ea   TSK_idle$sts$sumfmt
+>>>>>>> Stashed changes
 00000000   TSK_idle$sts$unittype
 00000000   TSK_idle$tsk
 00000000   UDEV$
 1180104c   _AIC3106_Init
 11801100   _AIC3106_readRegister
 11801154   _AIC3106_writeRegister
+<<<<<<< Updated upstream
 1180bce0   _BCACHE_bootInit
 1180aff4   _BCACHE_getMar
 1180afa4   _BCACHE_getSize
 1180af74   _BCACHE_setCacheToSram
 1180af24   _BCACHE_setMar
 1180aee0   _BCACHE_setSize
+=======
+1180be40   _BCACHE_bootInit
+1180b154   _BCACHE_getMar
+1180b104   _BCACHE_getSize
+1180b0d4   _BCACHE_setCacheToSram
+1180b084   _BCACHE_setMar
+1180b040   _BCACHE_setSize
+>>>>>>> Stashed changes
 11812800   _BIOS_init
 11812a30   _BIOS_start
 ffffffff   _CACHE_L1D
 ffffffff   _CACHE_L1P
 000493e0   _CLK_COUNTSPMS
+<<<<<<< Updated upstream
 11813ddc   _CLK_DFLTMICROSECS
 11813bc0   _CLK_D_countspms
 11813bb4   _CLK_D_dirty
@@ -1010,11 +1685,21 @@ ffffffff   _CACHE_L1P
 11813bb8   _CLK_D_prd
 11813bbc   _CLK_D_tddr
 1180aa90   _CLK_F_itime
+=======
+11814214   _CLK_DFLTMICROSECS
+11813fe0   _CLK_D_countspms
+11813fd4   _CLK_D_dirty
+11814218   _CLK_D_microseconds
+11813fd8   _CLK_D_prd
+11813fdc   _CLK_D_tddr
+1180abf0   _CLK_F_itime
+>>>>>>> Stashed changes
 00005dc0   _CLK_PRD
 01c20000   _CLK_REGS
 00000000   _CLK_TDDR
 00000000   _CLK_TIMERNUM
 00000001   _CLK_USETIMER
+<<<<<<< Updated upstream
 1180bda0   _CLK_gethtime
 11813ba4   _CLK_htimeDiv
 11813ba8   _CLK_htimeMult
@@ -1028,6 +1713,21 @@ ffffffff   _DDR
 11805924   _DIP_get
 11805988   _DIP_getAll
 11805900   _DIP_init
+=======
+1180bf00   _CLK_gethtime
+11813fc4   _CLK_htimeDiv
+11813fc8   _CLK_htimeMult
+11814224   _CLK_htimePerLtime
+1180f574   _CLK_inputClock
+1180abf0   _CLK_itime
+11813fcc   _CLK_ltimeDiv
+11813fd0   _CLK_ltimeMult
+1180bce0   _CLK_measure
+ffffffff   _DDR
+118059c4   _DIP_get
+11805a28   _DIP_getAll
+118059a0   _DIP_init
+>>>>>>> Stashed changes
 0000000a   _EVENT10
 00000064   _EVENT100
 00000065   _EVENT101
@@ -1157,6 +1857,7 @@ ffffffff   _DDR
 1180002c   _EVMC6748_initRAM
 118002b0   _EVMC6748_lpscTransition
 11800214   _EVMC6748_pinmuxConfig
+<<<<<<< Updated upstream
 118085f0   _EXC_clearLastStatus
 1180a060   _EXC_dispatch
 11808414   _EXC_exceptionHandler
@@ -1182,10 +1883,38 @@ ffffffff   _DDR
 11813c20   _GBL_freq
 1180bd00   _GBL_getVersion
 11813c18   _GBL_procId
+=======
+11808750   _EXC_clearLastStatus
+1180a1c0   _EXC_dispatch
+11808574   _EXC_exceptionHandler
+118141d8   _EXC_exceptionHook
+11808540   _EXC_external
+118141e0   _EXC_externalHook
+11808520   _EXC_getLastStatus
+118084e0   _EXC_init
+11808234   _EXC_internal
+118141dc   _EXC_internalHook
+11808200   _EXC_nmi
+118141e4   _EXC_nmiHook
+11814178   _EXC_returnPtr
+1180a384   _EXC_setReturnPtr
+1180fd40   _EXC_status
+11814170   _EXC_sysTrapTable
+1180be40   _FXN_F_nop
+1180baa4   _FXN_F_run
+1180bae0   _FXN_F_zero
+00000000   _GBL_CACHE
+1180b1e8   _GBL_cacheInit64P
+1181403c   _GBL_clkIn
+11814040   _GBL_freq
+1180be60   _GBL_getVersion
+11814038   _GBL_procId
+>>>>>>> Stashed changes
 11802fb8   _GPIO_getInput
 11802f40   _GPIO_setDir
 1180302c   _GPIO_setOutput
 118030ac   _GPIO_toggleLoop
+<<<<<<< Updated upstream
 11806e80   _HOSTclose
 11806040   _HOSTlseek
 11806340   _HOSTopen
@@ -1193,14 +1922,29 @@ ffffffff   _DDR
 11805780   _HOSTrename
 11806880   _HOSTunlink
 11806940   _HOSTwrite
+=======
+11806fe0   _HOSTclose
+118060e0   _HOSTlseek
+118063e0   _HOSTopen
+118064c0   _HOSTread
+11805820   _HOSTrename
+11806920   _HOSTunlink
+118069e0   _HOSTwrite
+>>>>>>> Stashed changes
 11811000   _HSRTDX_rec
 11811760   _HSRTDX_xmt
 11811fc0   _HST_A_TABBEG
 11811ffc   _HST_A_TABEND
 00005828   _HWI_CFGDISPATCHED
+<<<<<<< Updated upstream
 11813d7c   _HWI_D_inhwi
 11813d70   _HWI_D_spsave
 11808620   _HWI_F_dispatch
+=======
+1181419c   _HWI_D_inhwi
+11814190   _HWI_D_spsave
+11808780   _HWI_F_dispatch
+>>>>>>> Stashed changes
 0000000a   _HWI_INT10
 0000000b   _HWI_INT11
 0000000c   _HWI_INT12
@@ -1217,6 +1961,7 @@ ffffffff   _DDR
 00000002   _HWI_RESERVED0
 00000003   _HWI_RESERVED1
 00000000   _HWI_RESET
+<<<<<<< Updated upstream
 11813a70   _HWI_STKBOTTOM
 11813678   _HWI_STKTOP
 11813d70   _HWI_data
@@ -1224,6 +1969,15 @@ ffffffff   _DDR
 11813a78   _HWI_dispatchTab
 1180b9b8   _HWI_enable
 1180b9cc   _HWI_restore
+=======
+11813e90   _HWI_STKBOTTOM
+11813a98   _HWI_STKTOP
+11814190   _HWI_data
+1180bb00   _HWI_disable
+11813e98   _HWI_dispatchTab
+1180bb18   _HWI_enable
+1180bb2c   _HWI_restore
+>>>>>>> Stashed changes
 11802354   _I2CGPIO_getInput
 11802470   _I2CGPIO_getInputAll
 11802280   _I2CGPIO_init
@@ -1232,6 +1986,7 @@ ffffffff   _DDR
 118032c0   _I2C_init
 118033ac   _I2C_read
 11803508   _I2C_write
+<<<<<<< Updated upstream
 118145e4   _IDL_busyObj
 11812d70   _IDL_cpuLoad
 1180bd20   _IDL_loop
@@ -1312,6 +2067,88 @@ ffffffff   _L3_CBA_RAM
 118146e8   _PRD_clock
 11814548   _PRD_swi
 11812d78   _RTA_dispatcher
+=======
+118143f4   _IDL_busyObj
+11814888   _IDL_cpuLoad
+1180be80   _IDL_loop
+11814154   _IRAM
+1180bf20   _IRAM_base
+00002000   _IRAM_length
+11814108   _KNL_alarm
+1180b2a0   _KNL_check
+1181412c   _KNL_curqueue
+1181411c   _KNL_curtask
+11814124   _KNL_curtime
+1180fbc8   _KNL_dummy
+1180b600   _KNL_enter
+1180b5c0   _KNL_exit
+1180b368   _KNL_idle
+11814144   _KNL_idlefxn
+11814110   _KNL_inactive
+1180b7c0   _KNL_ipost
+1180b390   _KNL_max
+11814130   _KNL_maxqueue
+1180b840   _KNL_post
+11814120   _KNL_prevtask
+11814114   _KNL_priority
+1180fb28   _KNL_queues
+118099a0   _KNL_run
+1180ac40   _KNL_saveIsrFrame
+11814118   _KNL_set
+1181410c   _KNL_setpri
+11814384   _KNL_swi
+11814128   _KNL_swiptr
+1180acec   _KNL_switch
+11814138   _KNL_tcreatefxn
+1181413c   _KNL_tdeletefxn
+11809fb4   _KNL_tick
+11814140   _KNL_treadyfxn
+11814134   _KNL_tswitchfxn
+11814100   _KNL_wFlag
+11814104   _KNL_wList
+ffffffff   _L3_CBA_RAM
+1180b8e0   _LCK_pend
+1180b8c0   _LCK_post
+118052e0   _LED_init
+1180532c   _LED_isOn
+1180542c   _LED_toggle
+118053e4   _LED_turnOff
+11805394   _LED_turnOn
+1181488c   _LNK_dataPump
+118141c4   _LNK_dspFrameReadyMask
+118141c0   _LNK_dspFrameRequestMask
+118141cc   _LNK_readDone
+118141d0   _LNK_readFail
+118141c8   _LNK_readPend
+118141d4   _LNK_writeFail
+11814858   _LOG_A_TABBEG
+11814888   _LOG_A_TABEND
+00000002   _LOG_A_TABLEN
+11813fa4   _LOG_D_system
+1180b940   _LOG_event
+11814858   _LOG_system
+1181422c   _MEM
+11814044   _MEM_D_NUMSEGMENTS
+1181404c   _MEM_D_freelist
+11814050   _MEM_D_lockaddr
+11814048   _MEM_D_memtab
+11814054   _MEM_D_unlockaddr
+11809be0   _MEM_alloc
+11809fe0   _MEM_free
+11812c40   _MEM_init
+11814148   _MEM_memtab
+11800cd0   _McASP_Init
+11800e14   _McASP_Start
+1180fc98   _OBJ_segtab
+1180fc60   _OBJ_table
+11814700   _PIP_A_TABBEG
+118147c8   _PIP_A_TABEND
+11812d60   _PRD0
+11813fe4   _PRD_D_tick
+1180fff8   _PRD_clock
+11814358   _PRD_swi
+11814890   _RTA_dispatcher
+>>>>>>> Stashed changes
 11811fc4   _RTA_fromHost
 11811fe0   _RTA_toHost
 11812e00   _RTDX_Buffer
@@ -1332,6 +2169,7 @@ ffffffff   _L3_CBA_RAM
 00000000   _RTDX_interrupt_mask
 11811f20   _RTDX_memfill
 11813260   _RTDX_writing
+<<<<<<< Updated upstream
 11813d34   _SEG0
 1180ba60   _SEM_pend
 1180a420   _SEM_pendEnterKnl
@@ -1535,6 +2373,220 @@ ffffffff   binit
 11814120   hwi9
 118146d0   pinit
 11814698   trace
+=======
+11814154   _SEG0
+1180bbc0   _SEM_pend
+1180a580   _SEM_pendEnterKnl
+1180b4e0   _SEM_post
+1180b4e0   _SEM_postBinary
+1180b680   _SEM_postEnterKnl
+118143b0   _STS_A_TABBEG
+11814400   _STS_A_TABEND
+1180bc4c   _STS_add
+1180bc20   _STS_delta
+1180bc68   _STS_reset
+1180bea0   _STS_set
+1181407c   _SWI_D_curfxn
+1181406c   _SWI_D_curmask
+11814070   _SWI_D_curset
+11814068   _SWI_D_execaddr
+11814084   _SWI_D_inswi
+11814074   _SWI_D_lock
+11814080   _SWI_D_rdybeg
+11814064   _SWI_D_runaddr
+11814064   _SWI_data
+11808cd0   _SWI_post
+11814058   _SYS
+1180fd88   _SYS_PUTCBEG
+1180ff87   _SYS_PUTCEND
+1180bc80   _SYS_abort
+1180ba40   _SYS_error
+1180b720   _SYS_exit
+1180fd08   _SYS_exitStack
+1181421c   _SYS_exitStackPtr
+11814220   _SYS_exitStackTop
+11801210   _SetGpio
+118148c8   _TRC_R_mask
+11814210   _TSK
+1180fc00   _TSK_ATTRS
+1180fc1c   _TSK_config
+1180af00   _TSK_exit
+1180ff94   _TSK_idle
+11812d00   _TSK_init
+11814208   _TSK_nTasks
+1181420c   _TSK_pid
+1180a900   _TSK_setup
+1180b464   _TSK_startup
+1180fc3c   _TSK_timerSem
+11801198   _USTIMER_delay
+11800c00   _UTIL_isUIBoardAttached
+11800aa8   _UTIL_printMem
+1180bdc0   _UTL_doAbort
+1180bec0   _UTL_doError
+1180be00   _UTL_doPutc
+1180bee0   _UTL_halt
+11814238   __CIOBUF_
+1180ac10   __CLK_lat1beg
+1180ac30   __CLK_lat1end
+11814060   __HOOK_NUMHOOKS
+1181405c   __HOOK_knlId
+11808780   __HWI_lat1beg
+11808908   __HWI_lat1end
+11808908   __HWI_lat2beg
+11808ae4   __HWI_lat2end1
+11808a70   __HWI_lat2end2
+11808b00   __HWI_lat3beg
+11808aa0   __HWI_lat3end2
+1180bb60   __IDL_lat1beg
+1180bba0   __IDL_lat1end
+1180b2ec   __KNL_lat1beg
+1180b368   __KNL_lat1end
+1180b940   __LOG_lat1beg
+1180fcdc   __MEM_mutex
+118097c0   __RTA_lat1beg
+118097f4   __RTA_lat1end
+1180a760   __SEM_dopost
+11813e98   __STACK_END
+00000400   __STACK_SIZE
+11808dd8   __SWI_lat1beg
+11808e84   __SWI_lat1end
+11808e88   __SWI_lat2beg
+11808ee8   __SWI_lat2end
+11808c60   __SWI_lat3beg
+11808ccc   __SWI_lat3end
+1180fcb4   __TSK_mutex
+1180fd74   ___TI_enable_exit_profile_output
+ffffffff   ___TI_pprof_out_hndl
+ffffffff   ___TI_prof_data_size
+ffffffff   ___TI_prof_data_start
+118079e0   ___add_dtor
+1180f880   ___atexit_func_id__
+ffffffff   ___binit__
+11813e98   ___bss__
+ffffffff   ___c_args__
+1180df20   ___cinit__
+11800000   ___data__
+11800000   ___edata__
+11814234   ___end__
+11807c40   ___etext__
+11807a20   ___isinf
+118148b8   ___pinit__
+11800000   ___text__
+1180adc0   __auto_init
+11806b60   __c6xabi_divu
+11806ce0   __c6xabi_remi
+11807080   __cleanup
+1180fd6c   __cleanup_ptr
+11805d80   __closefile
+11813410   __ctypes_
+11801240   __divd
+11807120   __divli
+11806b60   __divu
+11805680   __divul
+11804160   __divull
+11806c20   __doflush
+1180fd70   __dtors_ptr
+11807300   __fixdli
+118076c0   __fltlid
+11807aa0   __frcmpyd_div
+1180f570   __ft_end
+1180f250   __ftable
+11807740   __llshl
+11807ae0   __llshru
+1180fd78   __lock
+11807b60   __negll
+11807b80   __nop
+11802760   __printfi
+11807be0   __register_lock
+11807c00   __register_unlock
+11806ce0   __remi
+11807b20   __remli
+11813a98   __stack
+118078c0   __subcull
+1180f430   __tmpnams
+1180fd7c   __unlock
+118061e0   __wrt_ok
+118141ac   _a_fir
+11806da0   _atexit
+118065a0   _atoi
+11804928   _audioHWI
+1180f6a0   _b_fir
+11813518   _bitval_u32
+1180f578   _buffer
+118141b0   _bufferLength
+11812b80   _c_int00
+118062e0   _call_dtors
+118096cc   _calloc
+11806680   _close
+11800688   _config_pll0
+118008c4   _config_pll1
+11804898   _dipPRD
+118141ab   _dist
+1180fb24   _dtors
+118141aa   _filterOn
+11804cc0   _fputc
+11802ba0   _fputs
+118094a0   _free
+11805fc0   _fseek
+11800c68   _initAll
+1180f660   _lowPass1
+1180f870   _lowPass2
+118074e0   _lseek
+11806e60   _ltoa
+11804860   _main
+118094c4   _malloc
+118141a8   _mask
+11809608   _memalign
+11807920   _memccpy
+11807580   _memcpy
+11806760   _memset
+11806840   _printf
+11804cc0   _putc
+118141b4   _readBuffer
+118141bc   _readFilter
+11800c20   _read_audio_sample
+118077c0   _readmsg
+11809524   _realloc
+11807c20   _remove
+118141f0   _rtdxNullChanCnt
+118141f4   _rtdxNullFuncCnt
+118141fc   _rtdxRecNotDoneCnt
+11814204   _rtdxXmtErrorCnt
+118141f8   _rtdxXmtNotDoneCnt
+11814200   _rtdxXmtRestartCnt
+11813254   _rtdx_buffer_state
+11813210   _rtdx_mon_state
+118050e0   _setvbuf
+11814870   _trace
+11807840   _unlink
+11807620   _write
+118141b8   _writeIndex
+11800c44   _write_audio_sample
+11807980   _writemsg
+ffffffff   binit
+1180df20   cinit
+11800000   edata
+11814234   end
+11807c40   etext
+11814400   hwi0
+11814420   hwi1
+11814540   hwi10
+11814560   hwi11
+11814580   hwi12
+118145a0   hwi13
+118145c0   hwi14
+118145e0   hwi15
+11814440   hwi2
+11814460   hwi3
+11814480   hwi4
+118144a0   hwi5
+118144c0   hwi6
+118144e0   hwi7
+11814500   hwi8
+11814520   hwi9
+118148b8   pinit
+11814870   trace
+>>>>>>> Stashed changes
 11810000   trace$buf
 00000001   trace$datatype
 00000000   trace$log
@@ -2100,6 +3152,7 @@ address    name
 118033ac   _I2C_read
 11803508   _I2C_write
 11804160   __divull
+<<<<<<< Updated upstream
 11804a80   _fputc
 11804a80   _putc
 11804ea0   _setvbuf
@@ -2376,6 +3429,274 @@ address    name
 11810044   IDL_busyObj$maxfmt
 11810047   IDL_busyObj$sumfmt
 1181004a   IDL_busyObj$avgfmt
+=======
+11804860   _main
+11804898   _dipPRD
+11804928   _audioHWI
+11804cc0   _fputc
+11804cc0   _putc
+118050e0   _setvbuf
+118052e0   _LED_init
+1180532c   _LED_isOn
+11805394   _LED_turnOn
+118053e4   _LED_turnOff
+1180542c   _LED_toggle
+11805680   __divul
+11805820   _HOSTrename
+118059a0   _DIP_init
+118059c4   _DIP_get
+11805a28   _DIP_getAll
+11805d80   __closefile
+11805fc0   _fseek
+118060e0   _HOSTlseek
+118061e0   __wrt_ok
+118062e0   _call_dtors
+118063e0   _HOSTopen
+118064c0   _HOSTread
+118065a0   _atoi
+11806680   _close
+11806760   _memset
+11806840   _printf
+11806920   _HOSTunlink
+118069e0   _HOSTwrite
+11806b60   __c6xabi_divu
+11806b60   __divu
+11806c20   __doflush
+11806ce0   __c6xabi_remi
+11806ce0   __remi
+11806da0   _atexit
+11806e60   _ltoa
+11806fe0   _HOSTclose
+11807080   __cleanup
+11807120   __divli
+11807300   __fixdli
+118074e0   _lseek
+11807580   _memcpy
+11807620   _write
+118076c0   __fltlid
+11807740   __llshl
+118077c0   _readmsg
+11807840   _unlink
+118078c0   __subcull
+11807920   _memccpy
+11807980   _writemsg
+118079d8   C$$IO$$
+118079e0   ___add_dtor
+11807a20   ___isinf
+11807aa0   __frcmpyd_div
+11807ae0   __llshru
+11807b20   __remli
+11807b60   __negll
+11807b80   __nop
+11807be0   __register_lock
+11807c00   __register_unlock
+11807c20   _remove
+11807c40   LNK_F_checkBufferCall
+11807c40   ___etext__
+11807c40   etext
+11807c60   LNK_F_getChanPtr
+11807cb8   LNK_F_init
+11807cc0   LNK_F_dataPump
+11807cd0   LNK_rcloop
+11807d94   LNK_rdrtry
+11807da4   LNK_rrloop
+11807e64   LNK_wrrtry
+11807e70   LNK_wrloop
+11807f40   LNK_newin
+11808074   LNK_newout
+118081c8   LNK_F_readCallBack
+11808200   _EXC_nmi
+11808234   _EXC_internal
+118084e0   _EXC_init
+11808520   _EXC_getLastStatus
+11808540   _EXC_external
+11808574   _EXC_exceptionHandler
+11808750   _EXC_clearLastStatus
+11808780   CLK_HOOKFXN
+11808780   HWI_F_dispatch
+11808780   _HWI_F_dispatch
+11808780   __HWI_lat1beg
+11808908   __HWI_lat1end
+11808908   __HWI_lat2beg
+11808a70   __HWI_lat2end2
+11808aa0   __HWI_lat3end2
+11808ae4   __HWI_lat2end1
+11808b00   __HWI_lat3beg
+11808c60   SWI_F_enable
+11808c60   __SWI_lat3beg
+11808ccc   __SWI_lat3end
+11808cd0   SWI_F_post
+11808cd0   _SWI_post
+11808dd8   __SWI_lat1beg
+11808e44   SWI_EXECFXN
+11808e44   SWI_F_exec
+11808e6c   SWI_F_iexec
+11808e84   __SWI_lat1end
+11808e88   __SWI_lat2beg
+11808ee8   __SWI_lat2end
+11808eec   SWI_F_run
+11808eec   SWI_RUNFXN
+11809120   PRD_F_swi
+118093a4   PRD_F_tick
+118094a0   _free
+118094c4   _malloc
+11809524   _realloc
+11809608   _memalign
+118096cc   _calloc
+11809720   RTA_F_getlog
+11809758   RTA_F_getsts
+11809798   RTA_F_readblk
+118097b4   RTA_F_writeword
+118097c0   RTA_F_resetmem
+118097c0   __RTA_lat1beg
+118097f4   __RTA_lat1end
+11809800   RTA_F_dispatch
+1180984c   RTA_execute
+118099a0   _KNL_run
+11809be0   _MEM_alloc
+11809fb4   PRD_THOOKFXN
+11809fb4   _KNL_tick
+11809fe0   _MEM_free
+1180a1c0   _EXC_dispatch
+1180a384   _EXC_setReturnPtr
+1180a3a0   PIP_F_take
+1180a418   PIP_F_give
+1180a418   PIP_F_probe
+1180a4e8   PIP_F_start
+1180a580   _SEM_pendEnterKnl
+1180a760   __SEM_dopost
+1180a900   _TSK_setup
+1180aaa0   CLK_F_getltime
+1180aab0   CLK_F_isr
+1180abf0   CLK_F_itime
+1180abf0   _CLK_F_itime
+1180abf0   _CLK_itime
+1180ac10   __CLK_lat1beg
+1180ac30   __CLK_lat1end
+1180ac40   _KNL_saveIsrFrame
+1180acec   _KNL_switch
+1180ad98   KNL_glue
+1180adc0   __auto_init
+1180af00   _TSK_exit
+1180b040   _BCACHE_setSize
+1180b084   _BCACHE_setMar
+1180b0d4   _BCACHE_setCacheToSram
+1180b104   _BCACHE_getSize
+1180b154   _BCACHE_getMar
+1180b1e8   _GBL_cacheInit64P
+1180b2a0   _KNL_check
+1180b2ec   __KNL_lat1beg
+1180b368   _KNL_idle
+1180b368   __KNL_lat1end
+1180b390   _KNL_max
+1180b464   _TSK_startup
+1180b4e0   _SEM_post
+1180b4e0   _SEM_postBinary
+1180b5c0   _KNL_exit
+1180b600   _KNL_enter
+1180b680   _SEM_postEnterKnl
+1180b720   _SYS_exit
+1180b7c0   _KNL_ipost
+1180b840   _KNL_post
+1180b8c0   _LCK_post
+1180b8e0   _LCK_pend
+1180b940   LOG_F_event
+1180b940   _LOG_event
+1180b940   __LOG_lat1beg
+1180b9c0   IDL_F_calibrate
+1180ba40   _SYS_error
+1180baa0   FXN_F_nop
+1180baa4   FXN_F_run
+1180baa4   _FXN_F_run
+1180bae0   FXN_F_zero
+1180bae0   _FXN_F_zero
+1180bb00   _HWI_disable
+1180bb18   _HWI_enable
+1180bb2c   _HWI_restore
+1180bb60   IDL_F_busy
+1180bb60   __IDL_lat1beg
+1180bba0   __IDL_lat1end
+1180bbc0   _SEM_pend
+1180bc20   STS_F_delta
+1180bc20   _STS_delta
+1180bc4c   STS_F_add
+1180bc4c   _STS_add
+1180bc68   STS_F_reset
+1180bc68   _STS_reset
+1180bc80   _SYS_abort
+1180bce0   _CLK_measure
+1180bd40   IDL_CALIBRFXN
+1180bd40   IDL_F_stub
+1180bd80   RTA_F_andn
+1180bd98   RTA_F_or
+1180bdc0   SYS_ABORTFXN
+1180bdc0   _UTL_doAbort
+1180be00   SYS_PUTCFXN
+1180be00   _UTL_doPutc
+1180be40   GBL_USERINITFXN
+1180be40   GIO_CREATEFXN
+1180be40   GIO_DELETEFXN
+1180be40   GIO_PENDFXN
+1180be40   GIO_POSTFXN
+1180be40   PWRM_PWRM_SHAREDRESOURCEFXN
+1180be40   PWRM_PWRM_SLOTHOOKFXN
+1180be40   TSK_VCREATEFXN
+1180be40   TSK_VDELETEFXN
+1180be40   TSK_VEXITFXN
+1180be40   _BCACHE_bootInit
+1180be40   _FXN_F_nop
+1180be60   _GBL_getVersion
+1180be80   IDL_F_loop
+1180be80   _IDL_loop
+1180bea0   _STS_set
+1180bec0   SYS_ERRORFXN
+1180bec0   _UTL_doError
+1180bee0   SYS_EXITFXN
+1180bee0   _UTL_halt
+1180bf00   CLK_F_gethtime
+1180bf00   CLK_TIMEFXN
+1180bf00   _CLK_gethtime
+1180bf20   IRAM$B
+1180bf20   _IRAM_base
+1180df20   ___cinit__
+1180df20   cinit
+1180f250   __ftable
+1180f430   __tmpnams
+1180f570   __ft_end
+1180f574   _CLK_inputClock
+1180f578   _buffer
+1180f660   _lowPass1
+1180f6a0   _b_fir
+1180f870   _lowPass2
+1180f880   ___atexit_func_id__
+1180fb24   _dtors
+1180fb28   _KNL_queues
+1180fbc8   _KNL_dummy
+1180fc00   _TSK_ATTRS
+1180fc1c   _TSK_config
+1180fc3c   _TSK_timerSem
+1180fc60   _OBJ_table
+1180fc98   _OBJ_segtab
+1180fcb4   __TSK_mutex
+1180fcdc   __MEM_mutex
+1180fd08   _SYS_exitStack
+1180fd40   _EXC_status
+1180fd6c   __cleanup_ptr
+1180fd70   __dtors_ptr
+1180fd74   ___TI_enable_exit_profile_output
+1180fd78   __lock
+1180fd7c   __unlock
+1180fd88   _SYS_PUTCBEG
+1180ff87   _SYS_PUTCEND
+1180ff94   TSK_idle
+1180ff94   _TSK_idle
+1180ffe8   RTA_fromHost$buf
+1180fff8   CLK_A_TABBEG
+1180fff8   PRD_clock
+1180fff8   _PRD_clock
+1180fffc   CLK_null
+11810000   trace$buf
+>>>>>>> Stashed changes
 11811000   _HSRTDX_rec
 118112a0   _RTDX_Buffer_WriteCB
 11811760   _HSRTDX_xmt
@@ -2410,6 +3731,7 @@ address    name
 11812b80   _c_int00
 11812c40   _MEM_init
 11812d00   _TSK_init
+<<<<<<< Updated upstream
 11812d60   RTA_fromHost$buf
 11812d70   IDL_A_TABBEG
 11812d70   IDL_cpuLoad
@@ -2419,12 +3741,20 @@ address    name
 11812d78   RTA_dispatcher
 11812d78   _RTA_dispatcher
 11812d7c   IDL_END
+=======
+11812d60   PRD0
+11812d60   PRD_A_TABBEG
+11812d60   _PRD0
+11812d7c   PRD0$aaa
+11812d80   PRD_A_TABEND
+>>>>>>> Stashed changes
 11812e00   _RTDX_Buffer
 11813208   _RTDX_Buffer_Start
 1181320c   _RTDX_Buffer_End
 11813210   _rtdx_mon_state
 11813254   _rtdx_buffer_state
 11813260   _RTDX_writing
+<<<<<<< Updated upstream
 11813278   TSK_idle$stack
 11813610   TSK_idle$stkptr
 11813678   GBL_stackbeg
@@ -2659,6 +3989,265 @@ address    name
 118146e8   PRD_clock
 118146e8   _PRD_clock
 118146ec   CLK_null
+=======
+11813410   __ctypes_
+11813518   _bitval_u32
+11813691   PRD0$sts$maxfmt
+11813698   TSK_idle$stack
+1181369a   PRD0$sts$sumfmt
+118136a3   PRD0$sts$avgfmt
+118136ae   PRD_swi$sts$maxfmt
+118136b6   PRD_swi$sts$sumfmt
+118136be   PRD_swi$sts$avgfmt
+118136c8   KNL_swi$sts$maxfmt
+118136d0   KNL_swi$sts$sumfmt
+118136d8   KNL_swi$sts$avgfmt
+118136e2   TSK_idle$sts$maxfmt
+118136ea   TSK_idle$sts$sumfmt
+118136f2   TSK_idle$sts$avgfmt
+118136fc   IDL_busyObj$maxfmt
+118136ff   IDL_busyObj$sumfmt
+11813702   IDL_busyObj$avgfmt
+11813a30   TSK_idle$stkptr
+11813a98   GBL_stackbeg
+11813a98   _HWI_STKTOP
+11813a98   __stack
+11813e90   _HWI_STKBOTTOM
+11813e97   GBL_stackend
+11813e98   $bss
+11813e98   .bss
+11813e98   _HWI_dispatchTab
+11813e98   __STACK_END
+11813e98   ___bss__
+11813f98   IDL_D_tabbeg
+11813f9c   IDL_D_calibrate
+11813fa0   IDL_D_calbeg
+11813fa4   LOG_D_system
+11813fa4   _LOG_D_system
+11813fa8   PIP_D_tabbeg
+11813fac   PIP_D_tablen
+11813fb0   CLK_R_time
+11813fb4   CLK_D_timefxn
+11813fb8   CLK_D_tabbeg
+11813fbc   CLK_D_isrhook
+11813fc0   CLK_D_idletime
+11813fc4   _CLK_htimeDiv
+11813fc8   _CLK_htimeMult
+11813fcc   _CLK_ltimeDiv
+11813fd0   _CLK_ltimeMult
+11813fd4   _CLK_D_dirty
+11813fd8   _CLK_D_prd
+11813fdc   _CLK_D_tddr
+11813fe0   _CLK_D_countspms
+11813fe4   PRD_D_tick
+11813fe4   _PRD_D_tick
+11813fe8   PRD_D_cur
+11813fec   PRD_D_elapsed
+11813ff0   PRD_D_prevtim
+11813ff4   PRD_D_scalar
+11813ff8   PRD_D_swihandle
+11813ffc   PRD_D_tabbeg
+11814000   PRD_D_tablen
+11814004   PRD_D_thook
+11814008   RTA_D_fromHost
+1181400c   RTA_D_toHost
+11814010   RTA_D_logval
+11814020   RTA_D_stsval
+1181402c   HST_D_chanmask
+11814030   HST_D_tabbeg
+11814034   HST_D_tabend
+11814038   _GBL_procId
+1181403c   _GBL_clkIn
+11814040   _GBL_freq
+11814044   _MEM_D_NUMSEGMENTS
+11814048   _MEM_D_memtab
+1181404c   _MEM_D_freelist
+11814050   _MEM_D_lockaddr
+11814054   _MEM_D_unlockaddr
+11814058   _SYS
+1181405c   __HOOK_knlId
+11814060   __HOOK_NUMHOOKS
+11814064   SWI_D_runaddr
+11814064   _SWI_D_runaddr
+11814064   _SWI_data
+11814068   SWI_D_execaddr
+11814068   _SWI_D_execaddr
+1181406c   SWI_D_curmask
+1181406c   _SWI_D_curmask
+11814070   SWI_D_curset
+11814070   _SWI_D_curset
+11814074   SWI_D_lock
+11814074   _SWI_D_lock
+11814078   SWI_D_curmbox
+1181407c   SWI_D_curfxn
+1181407c   _SWI_D_curfxn
+11814080   SWI_D_rdybeg
+11814080   _SWI_D_rdybeg
+11814084   SWI_D_inswi
+11814084   _SWI_D_inswi
+11814088   SWI_D_rdytab
+11814100   _KNL_wFlag
+11814104   _KNL_wList
+11814108   _KNL_alarm
+1181410c   _KNL_setpri
+11814110   _KNL_inactive
+11814114   _KNL_priority
+11814118   _KNL_set
+1181411c   _KNL_curtask
+11814120   _KNL_prevtask
+11814124   _KNL_curtime
+11814128   _KNL_swiptr
+1181412c   _KNL_curqueue
+11814130   _KNL_maxqueue
+11814134   _KNL_tswitchfxn
+11814138   _KNL_tcreatefxn
+1181413c   _KNL_tdeletefxn
+11814140   _KNL_treadyfxn
+11814144   _KNL_idlefxn
+11814148   _MEM_memtab
+11814154   HST_DSMBUFSEG
+11814154   IRAM
+11814154   MEM_MALLOCSEG
+11814154   MEM_SEGZERO
+11814154   RTDX_DATAMEMSEG
+11814154   _IRAM
+11814154   _SEG0
+11814158   RTA_fromHost$pipe$dtab
+11814164   RTA_toHost$pipe$dtab
+11814170   _EXC_sysTrapTable
+11814178   _EXC_returnPtr
+11814190   HWI_D_spsave
+11814190   _HWI_D_spsave
+11814190   _HWI_data
+1181419c   _HWI_D_inhwi
+118141a0   HWI_D_bss
+118141a4   HWI_D_ccmask
+118141a8   _mask
+118141aa   _filterOn
+118141ab   _dist
+118141ac   _a_fir
+118141b0   _bufferLength
+118141b4   _readBuffer
+118141b8   _writeIndex
+118141bc   _readFilter
+118141c0   LNK_dspFrameRequestMask
+118141c0   _LNK_dspFrameRequestMask
+118141c4   LNK_dspFrameReadyMask
+118141c4   _LNK_dspFrameReadyMask
+118141c8   LNK_readPend
+118141c8   _LNK_readPend
+118141cc   LNK_readDone
+118141cc   _LNK_readDone
+118141d0   LNK_readFail
+118141d0   _LNK_readFail
+118141d4   LNK_writeFail
+118141d4   _LNK_writeFail
+118141d8   _EXC_exceptionHook
+118141dc   _EXC_internalHook
+118141e0   _EXC_externalHook
+118141e4   _EXC_nmiHook
+118141f0   _rtdxNullChanCnt
+118141f4   _rtdxNullFuncCnt
+118141f8   _rtdxXmtNotDoneCnt
+118141fc   _rtdxRecNotDoneCnt
+11814200   _rtdxXmtRestartCnt
+11814204   _rtdxXmtErrorCnt
+11814208   _TSK_nTasks
+1181420c   _TSK_pid
+11814210   _TSK
+11814214   _CLK_DFLTMICROSECS
+11814218   _CLK_D_microseconds
+1181421c   _SYS_exitStackPtr
+11814220   _SYS_exitStackTop
+11814224   _CLK_htimePerLtime
+11814228   IDL_D_busyObj
+1181422c   _MEM
+11814234   ___end__
+11814234   end
+11814238   __CIOBUF_
+11814358   PRD_SWIHANDLE
+11814358   PRD_swi
+11814358   SWI_A_TABBEG
+11814358   _PRD_swi
+11814384   KNL_swi
+11814384   _KNL_swi
+118143b0   PRD0$sts$stsobj
+118143b0   STS_A_TABBEG
+118143b0   SWI_A_TABEND
+118143b0   _STS_A_TABBEG
+118143b4   PRD0$sts
+118143c0   PRD_swi$sts$stsobj
+118143c4   PRD_swi$sts
+118143d0   KNL_swi$sts$stsobj
+118143d4   KNL_swi$sts
+118143e0   TSK_idle$sts$stsobj
+118143e4   TSK_idle$sts
+118143f0   IDL_busyObj$stsobj
+118143f4   IDL_busyObj
+118143f4   _IDL_busyObj
+11814400   HWI_A_VECS
+11814400   STS_A_TABEND
+11814400   _STS_A_TABEND
+11814400   hwi0
+11814420   hwi1
+11814440   hwi2
+11814460   hwi3
+11814480   hwi4
+118144a0   hwi5
+118144c0   hwi6
+118144e0   hwi7
+11814500   hwi8
+11814520   hwi9
+11814540   hwi10
+11814560   hwi11
+11814580   hwi12
+118145a0   hwi13
+118145c0   hwi14
+118145e0   hwi15
+11814600   RTA_toHost$buf
+11814700   PIP_A_TABBEG
+11814700   RTA_fromHost$pipe
+11814700   _PIP_A_TABBEG
+11814704   RTA_fromHost$pipe$rd
+11814730   RTA_fromHost$pipe$aaa
+11814734   RTA_fromHost$pipe$wr
+11814760   RTA_fromHost$pipe$bbb
+11814764   RTA_toHost$pipe
+11814768   RTA_toHost$pipe$rd
+11814794   RTA_toHost$pipe$aaa
+11814798   RTA_toHost$pipe$wr
+118147c4   RTA_toHost$pipe$bbb
+118147c8   PIP_A_TABEND
+118147c8   _PIP_A_TABEND
+11814858   LOG_A_TABBEG
+11814858   LOG_system
+11814858   _LOG_A_TABBEG
+11814858   _LOG_system
+11814870   _trace
+11814870   trace
+11814888   IDL_A_TABBEG
+11814888   IDL_cpuLoad
+11814888   LOG_A_TABEND
+11814888   _IDL_cpuLoad
+11814888   _LOG_A_TABEND
+1181488c   LNK_dataPump
+1181488c   _LNK_dataPump
+11814890   RTA_dispatcher
+11814890   _RTA_dispatcher
+11814894   IDL_END
+11814898   IDL_A_CALBEG
+11814898   IDL_cpuLoad$
+1181489c   LNK_dataPump$
+118148a0   RTA_dispatcher$
+118148a4   IDL_END$
+118148a8   SYS$config
+118148b8   ___pinit__
+118148b8   pinit
+118148c4   TRC_cinit
+118148c8   TRC_R_mask
+118148c8   _TRC_R_mask
+118148cc   GBL_initdone
+>>>>>>> Stashed changes
 28040d0c   HWI_INTRMUX3
 ffffffff   CACHE_L1D
 ffffffff   CACHE_L1P
@@ -2680,4 +4269,8 @@ ffffffff   ___binit__
 ffffffff   ___c_args__
 ffffffff   binit
 
+<<<<<<< Updated upstream
 [1134 symbols]
+=======
+[1143 symbols]
+>>>>>>> Stashed changes

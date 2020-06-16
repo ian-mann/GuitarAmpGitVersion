@@ -5,7 +5,11 @@
 ;; INPUT hello.cdb
 
 ;; CONFIGURATION/VERSION INFORMATION
+<<<<<<< Updated upstream
 	.asg "Thu Jun 04 09:25:38 2020", VERS$DATE
+=======
+	.asg "Tue Jun 16 10:31:00 2020", VERS$DATE
+>>>>>>> Stashed changes
 
 ;; PROLOGUE
 	.include hellocfg.h62

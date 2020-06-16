@@ -51,6 +51,18 @@ hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdbool.h
 hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/yvals.h
 hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdarg.h
 hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/_lock.h
+<<<<<<< Updated upstream
+=======
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdio.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/math.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/float.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/access.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/elfnames.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/mathf.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/unaccess.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/mathl.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/unaccess.h
+>>>>>>> Stashed changes
 
 ../hello.c: 
 C:/eXperimenter/L138_chapter2/GuitarAmpGitVersion/Debug/hellocfg.h: 
@@ -103,3 +115,15 @@ C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdbool.h:
 C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/yvals.h: 
 C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdarg.h: 
 C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/_lock.h: 
+<<<<<<< Updated upstream
+=======
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdio.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/math.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/float.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/access.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/elfnames.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/mathf.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/unaccess.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/mathl.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/unaccess.h: 
+>>>>>>> Stashed changes
