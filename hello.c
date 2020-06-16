@@ -7,7 +7,7 @@
 #include "stdio.h"
 #include "math.h"
 #include "data.h"
-#define SIZE_OF_BUFFER 16
+#define SIZE_OF_BUFFER 2048
 
 int16_t volatile mask = 0xffff;
 int16_t buffer[SIZE_OF_BUFFER];
@@ -97,15 +97,19 @@ s16 = read_audio_sample(); // get current input sample
 writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
 buffer[writeIndex] = s16;
 
+// implement distortion algorithm
+if(dist){
+}
+
 // implement buffer and convolution
 
 if(filterOn){
-	for(i=0;i<SIZE_OF_BUFFER;i++){
+	for(i=0;i<2048;i++){
 
-	signal += buffer[(writeIndex + i) % SIZE_OF_BUFFER] * lowPass1[SIZE_OF_BUFFER-i];
+	signal += buffer[(writeIndex + i) % SIZE_OF_BUFFER] * b_fir[2048-i];
 
 	}
-	signal = signal*a_fir[0];
+
 }
 
 else{
