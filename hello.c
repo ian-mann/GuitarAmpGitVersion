@@ -89,7 +89,6 @@ int16_t s16 = 0;
 int16_t outputSample = 0; // initialise sample variable
 int16_t signal = 0;
 
-
 int i = 0;
 
 
