@@ -102,10 +102,11 @@ buffer[writeIndex] = s16;
 
 if(filterOn){
 	for(i=0;i<SIZE_OF_BUFFER;i++){
-
-	signal += buffer[(writeIndex + i) % SIZE_OF_BUFFER] * b_fir[SIZE_OF_BUFFER-i];
+// y = x[n]b - y[n-1]a
+	signal += (buffer[(writeIndex + i) % SIZE_OF_BUFFER] * b_fir[SIZE_OF_BUFFER-i]);
 
 	}
+signal = signal/a_fir[0];
 
 }
 
