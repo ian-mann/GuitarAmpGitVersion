@@ -55,6 +55,8 @@ void main(void)
 	wPres[i]=0;
 	}
 
+	blockSine(buffer, SIZE_OF_BUFFER); // Fill buffer with sine data
+
 initAll();
 return; // return to BIOS scheduler
 }
