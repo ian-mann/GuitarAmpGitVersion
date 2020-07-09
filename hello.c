@@ -55,7 +55,6 @@ void main(void)
 	wPres[i]=0;
 	}
 
-	blockSine(buffer, SIZE_OF_BUFFER); // Fill buffer with sine data
 
 initAll();
 return; // return to BIOS scheduler
@@ -146,16 +145,17 @@ int16_t outputSample = 0; // initialise sample variable
 int16_t signal = 0;
 
 int i = 0;
-int gain = 1, lowGain = 1, midGain = 1, presGain = 1, highGain = 1;
+int gain = 10, lowGain = 1, midGain = 1, presGain = 1, highGain = 1;
 
 s16 = read_audio_sample(); // get current input sample
 
 writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
+//buffer[writeIndex] = s16;
 
 // implement distortion algorithm
 if(dist){
 	// shift audio file for asymmetry
-	buffer[writeIndex] = (gain*s16)+0.5;
+	buffer[writeIndex] = (gain*buffer[writeIndex])+0.5;
 	// gain stage 1
 	if(buffer[writeIndex] > 2/3 || buffer[writeIndex] < -2/3){
 	buffer[writeIndex] = buffer[writeIndex]/(4*gain);
@@ -186,14 +186,20 @@ if(eqBypass){
 	}
 
 	for(i=0;i<6;i++){
-	wLow[writeIndex] = buffer[writeIndex] - (low[(writeIndex+i) % 6] * aLow[6 - i]);
-	wHigh[writeIndex] = buffer[writeIndex] - (high[(writeIndex+i) % 6] * aHigh[6 - i]);
+	wLow[writeIndex] += -(low[(writeIndex+i) % 6] * aLow[6 - i]);
+	wHigh[writeIndex] += -(high[(writeIndex+i) % 6] * aHigh[6 - i]);
 	}
+	wLow[writeIndex] = buffer[writeIndex] + wLow[writeIndex];
+	wHigh[writeIndex] = buffer[writeIndex] + wHigh[writeIndex];
+
 	// different loops due to different filter sizes
 	for(i=0;i<11;i++){
-	wMid[writeIndex] = buffer[writeIndex] - (mid[(writeIndex+i) % 11] * aMid[11 - i]);
-	wPres[writeIndex] = buffer[writeIndex] - (pres[(writeIndex+i) % 11] * aPres[11 - i]);
+	wMid[writeIndex] += -(mid[(writeIndex+i) % 11] * aMid[11 - i]);
+	wPres[writeIndex] += -(pres[(writeIndex+i) % 11] * aPres[11 - i]);
 	}
+	wMid[writeIndex] += buffer[writeIndex] + wMid[writeIndex];
+	wPres[writeIndex] += buffer[writeIndex] + wPres[writeIndex];
+
 
 	for(i=0;i<6;i++){
 	low[writeIndex] += (wLow[(writeIndex+i) % 6] * bLow[6 - i]);
@@ -210,11 +216,13 @@ if(eqBypass){
 }
 
 	// apply cab sim
-	for(i=0;i<SIZE_OF_BUFFER;i++){
-	signal += (eqSignal[(writeIndex+i) % SIZE_OF_BUFFER] * b_fir[SIZE_OF_BUFFER - i]);
-	}
+//	for(i=0;i<SIZE_OF_BUFFER;i++){
+//	signal += (eqSignal[(writeIndex+i) % SIZE_OF_BUFFER] * b_fir[SIZE_OF_BUFFER - i]);
+//	}
 
-outputSample = signal/10;
+signal = eqSignal[writeIndex];
+
+outputSample = signal/2;
 
 	if (MCASP->RSLOT)
 	{
