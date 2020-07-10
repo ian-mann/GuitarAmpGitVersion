@@ -38,9 +38,16 @@ void main(void)
  {
 	int i = 0;
 	for(i=0;i<SIZE_OF_BUFFER;i++){
-	buffer[i]=0;
+	buffer[i]=sine[i];
 	eqSignal[i]=0;
+	// gain stage 1
+	if(buffer[i] > 21845){
+	buffer[i] = 21845;
 	}
+	if(buffer[i] < -21845){
+		buffer[i] = -21845;
+	}
+}
 
 	for(i=0;i<6;i++){
 	low[i]=0;
@@ -55,7 +62,7 @@ void main(void)
 	wPres[i]=0;
 	}
 
-
+// end loop
 initAll();
 return; // return to BIOS scheduler
 }
