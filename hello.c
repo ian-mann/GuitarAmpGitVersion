@@ -7,11 +7,11 @@
 #include "stdio.h"
 #include "math.h"
 #include "data.h"
-#define SIZE_OF_BUFFER 65
+#define SIZE_OF_BUFFER 64
 
 int16_t volatile mask = 0xffff;
-int16_t buffer[SIZE_OF_BUFFER];
-int16_t eqSignal[SIZE_OF_BUFFER];
+int32_t buffer[SIZE_OF_BUFFER];
+int32_t eqSignal[SIZE_OF_BUFFER];
 int16_t low[6];
 int16_t mid[11];
 int16_t pres[11];
@@ -38,15 +38,8 @@ void main(void)
  {
 	int i = 0;
 	for(i=0;i<SIZE_OF_BUFFER;i++){
-	buffer[i]=sine[i];
+	buffer[i]=0;
 	eqSignal[i]=0;
-	// gain stage 1
-	if(buffer[i] > 21845){
-	buffer[i] = 21845;
-	}
-	if(buffer[i] < -21845){
-		buffer[i] = -21845;
-	}
 }
 
 	for(i=0;i<6;i++){
@@ -149,7 +142,7 @@ void audioHWI(void)
 {
 int16_t s16 = 0;
 int16_t outputSample = 0; // initialise sample variable
-int16_t signal = 0;
+int32_t signal = 0;
 
 int i = 0;
 int gain = 10, lowGain = 1, midGain = 1, presGain = 1, highGain = 1;
@@ -157,15 +150,19 @@ int gain = 10, lowGain = 1, midGain = 1, presGain = 1, highGain = 1;
 s16 = read_audio_sample(); // get current input sample
 
 writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
-//buffer[writeIndex] = s16;
+buffer[writeIndex] = s16;
 
 // implement distortion algorithm
 if(dist){
 	// shift audio file for asymmetry
-	buffer[writeIndex] = (gain*buffer[writeIndex])+0.5;
+	buffer[writeIndex] = (gain*buffer[writeIndex])+16383;
 	// gain stage 1
-	if(buffer[writeIndex] > 2/3 || buffer[writeIndex] < -2/3){
-	buffer[writeIndex] = buffer[writeIndex]/(4*gain);
+	if(buffer[writeIndex] > 21844){
+		buffer[writeIndex] = round(buffer[writeIndex]/(4*gain));
+	//buffer[writeIndex] = buffer[writeIndex]/(4*gain);
+	}
+	if(buffer[writeIndex] < -21844){
+		buffer[writeIndex] = round(buffer[writeIndex]/(4*gain));
 	}
 }
 
@@ -223,11 +220,11 @@ if(eqBypass){
 }
 
 	// apply cab sim
-//	for(i=0;i<SIZE_OF_BUFFER;i++){
-//	signal += (eqSignal[(writeIndex+i) % SIZE_OF_BUFFER] * b_fir[SIZE_OF_BUFFER - i]);
-//	}
+	for(i=0;i<SIZE_OF_BUFFER;i++){
+	signal += (eqSignal[(writeIndex+i) % SIZE_OF_BUFFER] * b_fir[SIZE_OF_BUFFER - i]);
+	}
 
-signal = eqSignal[writeIndex];
+//signal = eqSignal[writeIndex];
 
 outputSample = signal/2;
 
