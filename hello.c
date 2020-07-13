@@ -7,7 +7,7 @@
 #include "stdio.h"
 #include "math.h"
 #include "data.h"
-#define SIZE_OF_BUFFER 64
+#define SIZE_OF_BUFFER 2048
 
 int16_t volatile mask = 0xffff;
 int32_t buffer[SIZE_OF_BUFFER];
