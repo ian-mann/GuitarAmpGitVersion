@@ -42,7 +42,6 @@
 								<option id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.DIAG_WRAP.1978834298" name="Wrap diagnostic messages (--diag_wrap)" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.DIAG_WRAP" value="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.DIAG_WRAP.off" valueType="enumerated"/>
 								<option id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.INCLUDE_PATH.1666882535" name="Add dir to #include search path (--include_path, -I)" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.INCLUDE_PATH" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${CG_TOOL_ROOT}/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\Users\Ian\Desktop\MSc Thesis\fftss-3.0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\eXperimenter\c6748\bsl\inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${TCONF_OUTPUT_DIR}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${BIOS_INCLUDE_DIR}&quot;"/>
@@ -70,7 +69,6 @@
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.C6000_7.4.linkerID.LIBRARY.2137481622" name="Include library file or command file as input (--library, -l)" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.linkerID.LIBRARY" valueType="libs">
 									<listOptionValue builtIn="false" value="&quot;C:\eXperimenter\c6748\bsl\lib\evmc6748_bsl.lib&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\Users\Ian\Desktop\MSc Thesis\fftss-3.0\win32\Debug\fftss.lib&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\ti\ccsv6\tools\compiler\c6000_7.4.18\lib\libc.a&quot;"/>
 								</option>
 								<inputType id="com.ti.ccstudio.buildDefinitions.C6000_7.4.exeLinker.inputType__CMD_SRCS.503052883" name="Linker Command Files" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.exeLinker.inputType__CMD_SRCS"/>

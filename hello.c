@@ -7,7 +7,6 @@
 #include "stdio.h"
 #include "math.h"
 #include "data.h"
-#include "fftss.h"
 
 #define SIZE_OF_BUFFER 2048
 
@@ -195,7 +194,7 @@ if(eqBypass){
 }
 
 //convert to frequency domain for FIR
-fftss_plan fftss_plan_dft_1d(SIZE_OF_BUFFER, in*, out*, i, FFTSS_ESTIMATE);
+//fftss_plan fftss_plan_dft_1d(SIZE_OF_BUFFER, in*, out*, i, FFTSS_ESTIMATE);
 
 // apply cab sim
 	for(i=0;i<SIZE_OF_BUFFER;i++){
