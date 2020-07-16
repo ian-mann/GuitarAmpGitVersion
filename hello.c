@@ -7,6 +7,7 @@
 #include "stdio.h"
 #include "math.h"
 #include "data.h"
+#include "biquad.h"
 
 #define SIZE_OF_BUFFER 2048
 
@@ -44,18 +45,23 @@ void main(void)
 	eqSignal[i]=0;
 }
 
-	for(i=0;i<6;i++){
-	low[i]=0;
-	high[i]=0;
-	wLow[i]=0;
-	wHigh[i]=0;
-	}
-	for(i=0;i<11;i++){
-	mid[i]=0;
-	pres[i]=0;
-	wMid[i]=0;
-	wPres[i]=0;
-	}
+	/* allocate a biquad structure at compile time */
+	biquad_t filter;
+
+	/* BQ_init() links the ring buffers and sets inital conditions to 0 */
+	BQ_init(&filter);
+
+	/* Set the 2nd order transfer function numerator coeffecients
+	 *  analog to matlab's B = [0.0039 0.0078 0.0039]
+	 */
+	BQ_setNum(&filter, 0.0039, 0.0078, 0.0039);
+
+	/* Set the 2nd order transfer function numerator coeffecients
+	 *  analog to matlab's A = [1.0 -1.8153 0.8310]
+	 *  only two values are needed, filter coeffecients must be normalized
+	 *  with resepct to A[0]
+	 */
+	BQ_setDen(&filter, -1.8153, 0.8310);
 
 // end loop
 initAll();

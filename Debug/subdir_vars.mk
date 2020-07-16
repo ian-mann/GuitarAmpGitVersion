@@ -10,19 +10,23 @@ S??_SRCS += \
 ./hellocfg.s?? 
 
 C_SRCS += \
+../biquad.c \
 ../block_sine.c \
 ../framework.c \
 ../hello.c \
 ./hellocfg_c.c \
-../ignore.c 
+../ignore.c \
+../rb.c 
 
 OBJS += \
+./biquad.obj \
 ./block_sine.obj \
 ./framework.obj \
 ./hello.obj \
 ./hellocfg.obj \
 ./hellocfg_c.obj \
-./ignore.obj 
+./ignore.obj \
+./rb.obj 
 
 GEN_MISC_FILES += \
 ./hello.cdb 
@@ -35,11 +39,13 @@ S??_DEPS += \
 ./hellocfg.d 
 
 C_DEPS += \
+./biquad.d \
 ./block_sine.d \
 ./framework.d \
 ./hello.d \
 ./hellocfg_c.d \
-./ignore.d 
+./ignore.d \
+./rb.d 
 
 GEN_CMDS += \
 ./hellocfg.cmd 
@@ -62,29 +68,35 @@ GEN_FILES__QUOTED += \
 "hellocfg_c.c" 
 
 C_DEPS__QUOTED += \
+"biquad.d" \
 "block_sine.d" \
 "framework.d" \
 "hello.d" \
 "hellocfg_c.d" \
-"ignore.d" 
+"ignore.d" \
+"rb.d" 
 
 S??_DEPS__QUOTED += \
 "hellocfg.d" 
 
 OBJS__QUOTED += \
+"biquad.obj" \
 "block_sine.obj" \
 "framework.obj" \
 "hello.obj" \
 "hellocfg.obj" \
 "hellocfg_c.obj" \
-"ignore.obj" 
+"ignore.obj" \
+"rb.obj" 
 
 C_SRCS__QUOTED += \
+"../biquad.c" \
 "../block_sine.c" \
 "../framework.c" \
 "../hello.c" \
 "./hellocfg_c.c" \
-"../ignore.c" 
+"../ignore.c" \
+"../rb.c" 
 
 S??_SRCS__QUOTED += \
 "./hellocfg.s??" 

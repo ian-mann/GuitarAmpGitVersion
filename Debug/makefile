@@ -10,12 +10,14 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := -l"./hellocfg.cmd"
 
 ORDERED_OBJS += \
+"./biquad.obj" \
 "./block_sine.obj" \
 "./framework.obj" \
 "./hello.obj" \
 "./hellocfg.obj" \
 "./hellocfg_c.obj" \
 "./ignore.obj" \
+"./rb.obj" \
 $(GEN_CMDS__FLAG) \
 -l"C:/eXperimenter/c6748/bsl/lib/evmc6748_bsl.lib" \
 -l"C:/ti/ccsv6/tools/compiler/c6000_7.4.18/lib/libc.a" \
@@ -157,9 +159,9 @@ GuitarAmpGitVersion.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(GEN_HDRS__QUOTED)$(GEN_MISC_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_CMDS__QUOTED)
-	-$(RM) "block_sine.d" "framework.d" "hello.d" "hellocfg_c.d" "ignore.d" 
+	-$(RM) "biquad.d" "block_sine.d" "framework.d" "hello.d" "hellocfg_c.d" "ignore.d" "rb.d" 
 	-$(RM) "hellocfg.d" 
-	-$(RM) "block_sine.obj" "framework.obj" "hello.obj" "hellocfg.obj" "hellocfg_c.obj" "ignore.obj" 
+	-$(RM) "biquad.obj" "block_sine.obj" "framework.obj" "hello.obj" "hellocfg.obj" "hellocfg_c.obj" "ignore.obj" "rb.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
