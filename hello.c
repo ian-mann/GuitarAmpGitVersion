@@ -7,7 +7,8 @@
 #include "stdio.h"
 #include "math.h"
 #include "data.h"
-#define SIZE_OF_BUFFER 2048
+#include "fftw3.h"
+#define SIZE_OF_BUFFER 2049
 
 int16_t volatile mask = 0xffff;
 int32_t buffer[SIZE_OF_BUFFER];
@@ -22,10 +23,9 @@ int16_t wMid[11];
 int16_t wPres[11];
 int16_t wHigh[6];
 
-bool lowBoost = false;
-bool midBoost = false;
-bool presBoost = false;
-bool highBoost = false;
+int lowGain = 1, midGain = 1, presGain = 1, highGain = 1;
+
+float filt[3] = {0.333, 0.333, 0.333};
 bool eqBypass = false;
 bool dist = true;
 
@@ -90,38 +90,30 @@ if(dip_status8) // switch 8 acts as a mute switch
 	}
 if(dip_status1) // boosts volume of low frequencies
 {
-	lowBoost = true;
-}
-else
-{
-	lowBoost = false;
+	lowGain = 4;
+}else{
+	lowGain = 1;
 }
 
 if(dip_status2) // boosts volume of mid frequencies
 {
-	midBoost = true;
-}
-else
-{
-	midBoost = false;
+	midGain = 4;
+}else{
+	midGain = 1;
 }
 
 if(dip_status3) // boosts volume of pres frequencies
 {
-	presBoost = true;
-}
-else
-{
-	presBoost = false;
+	presGain = 4;
+}else{
+	presGain = 1;
 }
 
 if(dip_status4) // boosts volume of high frequencies
 {
-	highBoost = true;
-}
-else
-{
-	highBoost = false;
+	highGain = 4;
+}else{
+	highGain = 1;
 }
 
 if(dip_status6) // bypass EQ
@@ -145,8 +137,7 @@ int16_t outputSample = 0; // initialise sample variable
 int32_t signal = 0;
 
 int i = 0;
-int gain = 10, lowGain = 1, midGain = 1, presGain = 1, highGain = 1;
-
+int gain = 10;
 s16 = read_audio_sample(); // get current input sample
 
 writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
@@ -168,50 +159,29 @@ if(dist){
 
 // implement EQ Stage
 if(eqBypass){
-	if(lowBoost){
-		lowGain = 4;
-	}else{
-		lowGain = 1;
-	}
-	if(midBoost){
-		midGain = 4;
-	}else{
-		midGain = 1;
-	}
-	if(presBoost){
-		presGain = 4;
-	}else{
-		presGain = 1;
-	}
-	if(highBoost){
-		highGain = 4;
-	}else{
-		highGain = 1;
-	}
-
 	for(i=0;i<6;i++){
-	wLow[writeIndex] += -(low[(writeIndex+i) % 6] * aLow[6 - i]);
-	wHigh[writeIndex] += -(high[(writeIndex+i) % 6] * aHigh[6 - i]);
+	wLow[writeIndex] += -(low[(writeIndex+i) % 6] * aLow[i]);
+	wHigh[writeIndex] += -(high[(writeIndex+i) % 6] * aHigh[i]);
 	}
 	wLow[writeIndex] = buffer[writeIndex] + wLow[writeIndex];
 	wHigh[writeIndex] = buffer[writeIndex] + wHigh[writeIndex];
 
 	// different loops due to different filter sizes
 	for(i=0;i<11;i++){
-	wMid[writeIndex] += -(mid[(writeIndex+i) % 11] * aMid[11 - i]);
-	wPres[writeIndex] += -(pres[(writeIndex+i) % 11] * aPres[11 - i]);
+	wMid[writeIndex] += -(mid[(writeIndex+i) % 11] * aMid[i]);
+	wPres[writeIndex] += -(pres[(writeIndex+i) % 11] * aPres[i]);
 	}
 	wMid[writeIndex] += buffer[writeIndex] + wMid[writeIndex];
 	wPres[writeIndex] += buffer[writeIndex] + wPres[writeIndex];
 
 
 	for(i=0;i<6;i++){
-	low[writeIndex] += (wLow[(writeIndex+i) % 6] * bLow[6 - i]);
-	high[writeIndex] += (wHigh[(writeIndex+i) % 6] * bHigh[6 - i]);
+	low[writeIndex] += (wLow[(writeIndex+i) % 6] * bLow[i]);
+	high[writeIndex] += (wHigh[(writeIndex+i) % 6] * bHigh[i]);
 	}
 	for(i=0;i<11;i++){
-	mid[writeIndex] += (wMid[(writeIndex+i) % 11] * bMid[11 - i]);
-	pres[writeIndex] += (wPres[(writeIndex+i) % 11] * bPres[11 - i]);
+	mid[writeIndex] += (wMid[(writeIndex+i) % 11] * bMid[i]);
+	pres[writeIndex] += (wPres[(writeIndex+i) % 11] * bPres[i]);
 	}
 
 	eqSignal[writeIndex] = low[writeIndex]*lowGain + mid[writeIndex]*midGain + pres[writeIndex]*presGain + high[writeIndex]*highGain;
@@ -219,12 +189,12 @@ if(eqBypass){
 	eqSignal[writeIndex] = buffer[writeIndex];
 }
 
-	// apply cab sim
+// apply cab sim
 	for(i=0;i<SIZE_OF_BUFFER;i++){
-	signal += (eqSignal[(writeIndex+i) % SIZE_OF_BUFFER] * b_fir[SIZE_OF_BUFFER - i]);
-	}
+	signal += (eqSignal[(writeIndex+i) % SIZE_OF_BUFFER] * b_fir[i]);
+}
 
-//signal = eqSignal[writeIndex];
+// signal = eqSignal[writeIndex];
 
 outputSample = signal/2;
 
