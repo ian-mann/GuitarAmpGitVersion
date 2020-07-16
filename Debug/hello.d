@@ -61,9 +61,7 @@ hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/unaccess.h
 hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/mathl.h
 hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/unaccess.h
 hello.obj: ../data.h
-hello.obj: ../fftw3.h
-hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdio.h
-hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stddef.h
+hello.obj: C:/Users/Ian/Desktop/MSc\ Thesis/fftss-3.0/include/fftss.h
 
 ../hello.c: 
 C:/eXperimenter/L138_chapter2/GuitarAmpGitVersion/Debug/hellocfg.h: 
@@ -126,6 +124,4 @@ C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/unaccess.h:
 C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/mathl.h: 
 C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/unaccess.h: 
 ../data.h: 
-../fftw3.h: 
-C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdio.h: 
-C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stddef.h: 
+C:/Users/Ian/Desktop/MSc\ Thesis/fftss-3.0/include/fftss.h: 

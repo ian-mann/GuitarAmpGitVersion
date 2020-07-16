@@ -7,12 +7,14 @@
 #include "stdio.h"
 #include "math.h"
 #include "data.h"
-#include "fftw3.h"
-#define SIZE_OF_BUFFER 2049
+#include "fftss.h"
+
+#define SIZE_OF_BUFFER 2048
 
 int16_t volatile mask = 0xffff;
 int32_t buffer[SIZE_OF_BUFFER];
 int32_t eqSignal[SIZE_OF_BUFFER];
+int32_t fftSignal[SIZE_OF_BUFFER];
 int16_t low[6];
 int16_t mid[11];
 int16_t pres[11];
@@ -26,6 +28,7 @@ int16_t wHigh[6];
 int lowGain = 1, midGain = 1, presGain = 1, highGain = 1;
 
 float filt[3] = {0.333, 0.333, 0.333};
+double in, out;
 bool eqBypass = false;
 bool dist = true;
 
@@ -138,6 +141,8 @@ int32_t signal = 0;
 
 int i = 0;
 int gain = 10;
+
+
 s16 = read_audio_sample(); // get current input sample
 
 writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
@@ -189,10 +194,15 @@ if(eqBypass){
 	eqSignal[writeIndex] = buffer[writeIndex];
 }
 
+//convert to frequency domain for FIR
+fftss_plan fftss_plan_dft_1d(SIZE_OF_BUFFER, in*, out*, i, FFTSS_ESTIMATE);
+
 // apply cab sim
 	for(i=0;i<SIZE_OF_BUFFER;i++){
-	signal += (eqSignal[(writeIndex+i) % SIZE_OF_BUFFER] * b_fir[i]);
+	signal += (fftSignal[(writeIndex+i) % SIZE_OF_BUFFER] * b_fir[i]);
 }
+
+// revert to time domain
 
 // signal = eqSignal[writeIndex];
 

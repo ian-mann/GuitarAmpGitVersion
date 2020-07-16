@@ -18,6 +18,7 @@ ORDERED_OBJS += \
 "./ignore.obj" \
 $(GEN_CMDS__FLAG) \
 -l"C:/eXperimenter/c6748/bsl/lib/evmc6748_bsl.lib" \
+-l"C:/Users/Ian/Desktop/MSc Thesis/fftss-3.0/win32/Debug/fftss.lib" \
 -l"C:/ti/ccsv6/tools/compiler/c6000_7.4.18/lib/libc.a" \
 
 -include ../makefile.init
@@ -144,7 +145,7 @@ all: GuitarAmpGitVersion.out
 GuitarAmpGitVersion.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C6000 Linker'
-	"C:/ti/ccsv6/tools/compiler/c6000_7.4.18/bin/cl6x" -mv6740 --abi=coffabi -g --define=c6748 --diag_wrap=off --diag_warning=225 --display_error_number -z --stack_size=0x800 -m"GuitarAmpGitVersion.map" --heap_size=0x800 -i"C:/ti/ccsv6/tools/compiler/c6000_7.4.18/lib" -i"C:/Users/Ian/Downloads/fftw-3.3.5-dll64" -i"C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include" -i"C:/ti/bios_5_42_02_10/packages/ti/rtdx/lib/c6000" -i"C:/ti/bios_5_42_02_10/packages/ti/bios/lib" --reread_libs --warn_sections --diag_wrap=off --display_error_number --xml_link_info="GuitarAmpGitVersion_linkInfo.xml" --rom_model -o "GuitarAmpGitVersion.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv6/tools/compiler/c6000_7.4.18/bin/cl6x" -mv6740 --abi=coffabi -g --define=c6748 --diag_wrap=off --diag_warning=225 --display_error_number -z --stack_size=0x800 -m"GuitarAmpGitVersion.map" --heap_size=0x800 -i"C:/ti/ccsv6/tools/compiler/c6000_7.4.18/lib" -i"C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include" -i"C:/ti/bios_5_42_02_10/packages/ti/rtdx/lib/c6000" -i"C:/ti/bios_5_42_02_10/packages/ti/bios/lib" --reread_libs --warn_sections --diag_wrap=off --display_error_number --xml_link_info="GuitarAmpGitVersion_linkInfo.xml" --rom_model -o "GuitarAmpGitVersion.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
