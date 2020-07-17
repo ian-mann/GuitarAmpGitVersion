@@ -9,28 +9,23 @@
 #include "data.h"
 #include "biquad.h"
 
-#define SIZE_OF_BUFFER 2048
+#define SIZE_OF_BUFFER 128
 
 int16_t volatile mask = 0xffff;
-int32_t buffer[SIZE_OF_BUFFER];
-int32_t eqSignal[SIZE_OF_BUFFER];
+int16_t eqSignal[SIZE_OF_BUFFER];
 int32_t fftSignal[SIZE_OF_BUFFER];
-int16_t low[6];
-int16_t mid[11];
-int16_t pres[11];
-int16_t high[6];
 
-int16_t wLow[6];
-int16_t wMid[11];
-int16_t wPres[11];
-int16_t wHigh[6];
-
-int lowGain = 1, midGain = 1, presGain = 1, highGain = 1;
-
-float filt[3] = {0.333, 0.333, 0.333};
 double in, out;
 bool eqBypass = false;
-bool dist = true;
+bool lowCut = false;
+bool midCut = false;
+bool presCut = false;
+bool highCut = false;
+bool dist = false;
+biquad_t low;
+biquad_t mid;
+biquad_t pres;
+biquad_t high;
 
 // setup global buffer
 int writeIndex = 0;
@@ -41,27 +36,35 @@ void main(void)
  {
 	int i = 0;
 	for(i=0;i<SIZE_OF_BUFFER;i++){
-	buffer[i]=0;
 	eqSignal[i]=0;
 }
 
 	/* allocate a biquad structure at compile time */
-	biquad_t filter;
+
 
 	/* BQ_init() links the ring buffers and sets inital conditions to 0 */
-	BQ_init(&filter);
+	BQ_init(&low);
+	BQ_init(&mid);
+	BQ_init(&pres);
+	BQ_init(&high);
 
 	/* Set the 2nd order transfer function numerator coeffecients
 	 *  analog to matlab's B = [0.0039 0.0078 0.0039]
 	 */
-	BQ_setNum(&filter, 0.0039, 0.0078, 0.0039);
+	BQ_setNum(&low, 0.97712229,	-1.95424458,0.97712229);
+	BQ_setNum(&mid, 0.82132579, -1.62859846,0.82132579);
+	BQ_setNum(&pres,0.54545455,	-0.94475499,0.54545455);
+	BQ_setNum(&high,0.09762616,0.19525232,0.09762616);
 
 	/* Set the 2nd order transfer function numerator coeffecients
 	 *  analog to matlab's A = [1.0 -1.8153 0.8310]
 	 *  only two values are needed, filter coeffecients must be normalized
 	 *  with resepct to A[0]
 	 */
-	BQ_setDen(&filter, -1.8153, 0.8310);
+	BQ_setDen(&low, -1.95372128,	0.95476788);
+	BQ_setDen(&mid, -1.62859846,	0.64265157);
+	BQ_setDen(&pres, -0.94475499,	0.09090909);
+	BQ_setDen(&high, -0.94276158,	0.33326621);
 
 // end loop
 initAll();
@@ -98,30 +101,30 @@ if(dip_status8) // switch 8 acts as a mute switch
 	}
 if(dip_status1) // boosts volume of low frequencies
 {
-	lowGain = 4;
+	lowCut = true;
 }else{
-	lowGain = 1;
+	lowCut = false;
 }
 
 if(dip_status2) // boosts volume of mid frequencies
 {
-	midGain = 4;
+	midCut = true;
 }else{
-	midGain = 1;
+	midCut = false;
 }
 
 if(dip_status3) // boosts volume of pres frequencies
 {
-	presGain = 4;
+	presCut = true;
 }else{
-	presGain = 1;
+	presCut = false;
 }
 
 if(dip_status4) // boosts volume of high frequencies
 {
-	highGain = 4;
+	highCut = true;
 }else{
-	highGain = 1;
+	highCut = false;
 }
 
 if(dip_status6) // bypass EQ
@@ -142,7 +145,6 @@ void audioHWI(void)
 {
 int16_t s16 = 0;
 int16_t outputSample = 0; // initialise sample variable
-int32_t signal = 0;
 
 int i = 0;
 int gain = 10;
@@ -151,67 +153,50 @@ int gain = 10;
 s16 = read_audio_sample(); // get current input sample
 
 writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
-buffer[writeIndex] = s16;
 
 // implement distortion algorithm
 if(dist){
 	// shift audio file for asymmetry
-	buffer[writeIndex] = (gain*buffer[writeIndex])+16383;
+	s16 = (gain*s16)+16383;
 	// gain stage 1
-	if(buffer[writeIndex] > 21844){
-		buffer[writeIndex] = round(buffer[writeIndex]/(4*gain));
+	if(s16 > 21844){
+		s16 = round(s16/(4*gain));
 	//buffer[writeIndex] = buffer[writeIndex]/(4*gain);
 	}
-	if(buffer[writeIndex] < -21844){
-		buffer[writeIndex] = round(buffer[writeIndex]/(4*gain));
+	if(s16 < -21844){
+		s16 = round(s16/(4*gain));
 	}
 }
+
 
 // implement EQ Stage
 if(eqBypass){
-	for(i=0;i<6;i++){
-	wLow[writeIndex] += -(low[(writeIndex+i) % 6] * aLow[i]);
-	wHigh[writeIndex] += -(high[(writeIndex+i) % 6] * aHigh[i]);
+	if(lowCut){
+		s16 = round(BQ_process(&low, s16));
 	}
-	wLow[writeIndex] = buffer[writeIndex] + wLow[writeIndex];
-	wHigh[writeIndex] = buffer[writeIndex] + wHigh[writeIndex];
-
-	// different loops due to different filter sizes
-	for(i=0;i<11;i++){
-	wMid[writeIndex] += -(mid[(writeIndex+i) % 11] * aMid[i]);
-	wPres[writeIndex] += -(pres[(writeIndex+i) % 11] * aPres[i]);
+	if(midCut){
+		s16 = round(BQ_process(&mid, s16));
 	}
-	wMid[writeIndex] += buffer[writeIndex] + wMid[writeIndex];
-	wPres[writeIndex] += buffer[writeIndex] + wPres[writeIndex];
-
-
-	for(i=0;i<6;i++){
-	low[writeIndex] += (wLow[(writeIndex+i) % 6] * bLow[i]);
-	high[writeIndex] += (wHigh[(writeIndex+i) % 6] * bHigh[i]);
+	if(presCut){
+		s16 = round(BQ_process(&pres, s16));
 	}
-	for(i=0;i<11;i++){
-	mid[writeIndex] += (wMid[(writeIndex+i) % 11] * bMid[i]);
-	pres[writeIndex] += (wPres[(writeIndex+i) % 11] * bPres[i]);
-	}
-
-	eqSignal[writeIndex] = low[writeIndex]*lowGain + mid[writeIndex]*midGain + pres[writeIndex]*presGain + high[writeIndex]*highGain;
-}else{
-	eqSignal[writeIndex] = buffer[writeIndex];
+	if(highCut){
+		s16 = round(BQ_process(&high, s16));
+    }
 }
+
+eqSignal[writeIndex] = s16;
 
 //convert to frequency domain for FIR
 //fftss_plan fftss_plan_dft_1d(SIZE_OF_BUFFER, in*, out*, i, FFTSS_ESTIMATE);
 
 // apply cab sim
-	for(i=0;i<SIZE_OF_BUFFER;i++){
-	signal += (fftSignal[(writeIndex+i) % SIZE_OF_BUFFER] * b_fir[i]);
-}
+//	for(i=0;i<SIZE_OF_BUFFER;i++){
+//	signal += (fftSignal[(writeIndex+i) % SIZE_OF_BUFFER] * b_fir[i]);
+//}
 
 // revert to time domain
-
-// signal = eqSignal[writeIndex];
-
-outputSample = signal/2;
+outputSample = eqSignal[writeIndex]/2;
 
 	if (MCASP->RSLOT)
 	{
