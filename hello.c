@@ -9,13 +9,12 @@
 #include "data.h"
 #include "biquad.h"
 
-#define SIZE_OF_BUFFER 128
+#define SIZE_OF_BUFFER 2048
 
 int16_t volatile mask = 0xffff;
 int16_t eqSignal[SIZE_OF_BUFFER];
 int32_t fftSignal[SIZE_OF_BUFFER];
 
-double in, out;
 bool eqBypass = false;
 bool lowCut = false;
 bool midCut = false;
@@ -38,10 +37,6 @@ void main(void)
 	for(i=0;i<SIZE_OF_BUFFER;i++){
 	eqSignal[i]=0;
 }
-
-	/* allocate a biquad structure at compile time */
-
-
 	/* BQ_init() links the ring buffers and sets inital conditions to 0 */
 	BQ_init(&low);
 	BQ_init(&mid);
@@ -59,7 +54,7 @@ void main(void)
 	/* Set the 2nd order transfer function numerator coeffecients
 	 *  analog to matlab's A = [1.0 -1.8153 0.8310]
 	 *  only two values are needed, filter coeffecients must be normalized
-	 *  with resepct to A[0]
+	 *  with respect to A[0]
 	 */
 	BQ_setDen(&low, -1.95372128,	0.95476788);
 	BQ_setDen(&mid, -1.62859846,	0.64265157);
@@ -185,7 +180,6 @@ if(eqBypass){
     }
 }
 
-eqSignal[writeIndex] = s16;
 
 //convert to frequency domain for FIR
 //fftss_plan fftss_plan_dft_1d(SIZE_OF_BUFFER, in*, out*, i, FFTSS_ESTIMATE);
@@ -196,7 +190,7 @@ eqSignal[writeIndex] = s16;
 //}
 
 // revert to time domain
-outputSample = eqSignal[writeIndex]/2;
+outputSample = s16;
 
 	if (MCASP->RSLOT)
 	{
