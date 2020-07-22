@@ -14,6 +14,7 @@
 int16_t volatile mask = 0xffff;
 int16_t eqSignal[SIZE_OF_BUFFER];
 int32_t fftSignal[SIZE_OF_BUFFER];
+int16_t buffer[SIZE_OF_BUFFER];
 
 bool eqBypass = false;
 bool lowCut = false;
@@ -32,7 +33,7 @@ int writeIndex = 0;
 //---------------------------------------------------------
 //---------------------------------------------------------
 void main(void)
- {
+{
 	int i = 0;
 	for(i=0;i<SIZE_OF_BUFFER;i++){
 	eqSignal[i]=0;
@@ -47,8 +48,8 @@ void main(void)
 	 *  analog to matlab's B = [0.0039 0.0078 0.0039]
 	 */
 	BQ_setNum(&low, 0.97712229,	-1.95424458,0.97712229);
-	BQ_setNum(&mid, 0.82132579, -1.62859846,0.82132579);
-	BQ_setNum(&pres,0.54545455,	-0.94475499,0.54545455);
+	BQ_setNum(&mid, 0.06482542,	0,	0.06482542);
+	BQ_setNum(&pres, 0.15472029, 0,	-0.15472029);
 	BQ_setNum(&high,0.09762616,0.19525232,0.09762616);
 
 	/* Set the 2nd order transfer function numerator coeffecients
@@ -57,8 +58,8 @@ void main(void)
 	 *  with respect to A[0]
 	 */
 	BQ_setDen(&low, -1.95372128,	0.95476788);
-	BQ_setDen(&mid, -1.62859846,	0.64265157);
-	BQ_setDen(&pres, -0.94475499,	0.09090909);
+	BQ_setDen(&mid, -1.86134293,	0.87034917);
+	BQ_setDen(&pres, -1.63295501,	0.69055942);
 	BQ_setDen(&high, -0.94276158,	0.33326621);
 
 // end loop
@@ -147,7 +148,7 @@ int gain = 10;
 
 s16 = read_audio_sample(); // get current input sample
 
-writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
+
 
 // implement distortion algorithm
 if(dist){
@@ -163,20 +164,23 @@ if(dist){
 	}
 }
 
+buffer[writeIndex] = s16;
+writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
+
 
 // implement EQ Stage
 if(eqBypass){
 	if(lowCut){
-		s16 = round(BQ_process(&low, s16));
+		buffer[writeIndex] = round(BQ_process(&low, buffer[writeIndex]));
 	}
 	if(midCut){
-		s16 = round(BQ_process(&mid, s16));
+		buffer[writeIndex] = round(BQ_process(&mid, buffer[writeIndex]));
 	}
 	if(presCut){
-		s16 = round(BQ_process(&pres, s16));
+		buffer[writeIndex] = round(BQ_process(&pres, buffer[writeIndex]));
 	}
 	if(highCut){
-		s16 = round(BQ_process(&high, s16));
+		buffer[writeIndex] = round(BQ_process(&high, buffer[writeIndex]));
     }
 }
 
@@ -190,7 +194,7 @@ if(eqBypass){
 //}
 
 // revert to time domain
-outputSample = s16;
+outputSample = buffer[writeIndex];
 
 	if (MCASP->RSLOT)
 	{
