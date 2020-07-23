@@ -37,7 +37,9 @@ void main(void)
 	int i = 0;
 	for(i=0;i<SIZE_OF_BUFFER;i++){
 	eqSignal[i]=0;
-}
+	buffer[i] = 0;
+	}
+
 	/* BQ_init() links the ring buffers and sets inital conditions to 0 */
 	BQ_init(&low);
 	BQ_init(&mid);
@@ -47,20 +49,20 @@ void main(void)
 	/* Set the 2nd order transfer function numerator coeffecients
 	 *  analog to matlab's B = [0.0039 0.0078 0.0039]
 	 */
-	BQ_setNum(&low, 0.97712229,	-1.95424458,0.97712229);
-	BQ_setNum(&mid, 0.06482542,	0,	0.06482542);
-	BQ_setNum(&pres, 0.15472029, 0,	-0.15472029);
-	BQ_setNum(&high,0.09762616,0.19525232,0.09762616);
+	BQ_setNum(&low, 1.0066410392970078,	-1.967424639045396,	0.9611629126895641);
+	BQ_setNum(&mid, 1.0213222535332775,	-1.892567957556463,	0.8753065318405447);
+	BQ_setNum(&pres, 1.073191101889334,	-1.5891086635291682,	0.5719752455457148);
+	BQ_setNum(&high, 0.8673339450189012,	-0.7718049814006561,	0.22416312718502107);
 
 	/* Set the 2nd order transfer function numerator coeffecients
 	 *  analog to matlab's A = [1.0 -1.8153 0.8310]
 	 *  only two values are needed, filter coeffecients must be normalized
 	 *  with respect to A[0]
 	 */
-	BQ_setDen(&low, -1.95372128,	0.95476788);
-	BQ_setDen(&mid, -1.86134293,	0.87034917);
-	BQ_setDen(&pres, -1.63295501,	0.69055942);
-	BQ_setDen(&high, -0.94276158,	0.33326621);
+	BQ_setDen(&low, -1.967424639045396,	0.967803951986572);
+	BQ_setDen(&mid, -1.892567957556463,	0.8966287853738223);
+	BQ_setDen(&pres, -1.5891086635291682,	0.645166347435049);
+	BQ_setDen(&high, -0.7718049814006561,	0.09149707220392224);
 
 // end loop
 initAll();
@@ -139,11 +141,12 @@ else
 //---------------------------------------------------------
 void audioHWI(void)
 {
-int16_t s16 = 0;
+int32_t s16 = 0;
 int16_t outputSample = 0; // initialise sample variable
+int16_t signal = 0;
 
 int i = 0;
-int gain = 10;
+int gain = 2;
 
 
 s16 = read_audio_sample(); // get current input sample
@@ -152,19 +155,20 @@ s16 = read_audio_sample(); // get current input sample
 
 // implement distortion algorithm
 if(dist){
-	// shift audio file for asymmetry
-	s16 = (gain*s16)+16383;
+	s16 = s16*gain;
 	// gain stage 1
-	if(s16 > 21844){
-		s16 = round(s16/(4*gain));
+	if(s16 > 8192){
+		buffer[writeIndex] = round(s16/(2*gain));
 	//buffer[writeIndex] = buffer[writeIndex]/(4*gain);
-	}
+	}else
 	if(s16 < -21844){
-		s16 = round(s16/(4*gain));
+		buffer[writeIndex] = round(s16/(2*gain));
+	}else{
+		buffer[writeIndex] = s16;
 	}
+}else{
+	buffer[writeIndex]= s16;
 }
-
-buffer[writeIndex] = s16;
 writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
 
 
@@ -187,10 +191,9 @@ if(eqBypass){
 
 //convert to frequency domain for FIR
 //fftss_plan fftss_plan_dft_1d(SIZE_OF_BUFFER, in*, out*, i, FFTSS_ESTIMATE);
-
-// apply cab sim
+//apply cab sim
 //	for(i=0;i<SIZE_OF_BUFFER;i++){
-//	signal += (fftSignal[(writeIndex+i) % SIZE_OF_BUFFER] * b_fir[i]);
+//	signal += (buffer[writeIndex+i % SIZE_OF_BUFFER] * b_fir[i]);
 //}
 
 // revert to time domain

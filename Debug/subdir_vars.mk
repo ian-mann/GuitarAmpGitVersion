@@ -93,7 +93,6 @@ C_SRCS__QUOTED += \
 "../biquad.c" \
 "../block_sine.c" \
 "../framework.c" \
-"../hello.c" \
 "./hellocfg_c.c" \
 "../ignore.c" \
 "../rb.c" 
