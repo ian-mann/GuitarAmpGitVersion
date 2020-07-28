@@ -9,7 +9,7 @@
 #include "data.h"
 #include "biquad.h"
 
-#define SIZE_OF_BUFFER 28
+#define SIZE_OF_BUFFER 64
 
 int16_t volatile mask = 0xffff;
 float eqSignal[SIZE_OF_BUFFER];
@@ -128,10 +128,12 @@ float signal = 0, low = 0, mid = 0, pres = 0, high = 0, distSignal = 0;
 
 
 int i = 0;
-int gain = 80;
+int gain = 60;
 
 
 s16 = read_audio_sample(); // get current input sample
+
+s16 = s16*2;
 
 // implement distortion algorithm
 if(dist){
@@ -200,9 +202,9 @@ if(eqBypass){
 
 //apply cab sim
 //	for(i=0;i<SIZE_OF_BUFFER;i++){
-//	signal += (buffer[writeIndex+i % SIZE_OF_BUFFER] * cab[i]);
+//	signal += (buffer[writeIndex+i % SIZE_OF_BUFFER] * b_fir[i]);
 //}
-signal = buffer[writeIndex];
+	signal = buffer[writeIndex];
 // revert to time domain
 //outputSample = round(buffer[writeIndex]/2);
 outputSample = signal;
