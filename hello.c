@@ -122,31 +122,56 @@ else
 void audioHWI(void)
 {
 int32_t s16 = 0;
+int32_t clean = 0;
 int16_t outputSample = 0; // initialise sample variable
-float signal = 0, low = 0, mid = 0, pres = 0, high = 0;
+float signal = 0, low = 0, mid = 0, pres = 0, high = 0, distSignal = 0;
 
 
 int i = 0;
-int gain = 25;
+int gain = 80;
 
 
 s16 = read_audio_sample(); // get current input sample
 
-
-
 // implement distortion algorithm
 if(dist){
-	s16 = s16*gain;
-	// gain stage 1
-	if(s16 > 8192){
-		s16 = s16/(2*gain);
-	//buffer[writeIndex] = buffer[writeIndex]/(4*gain);
+
+	// waveshaping
+//	distSignal = ((2*s16)/2)*(1-(s16^2)/2);
+	 distSignal = s16;
+	 clean = s16;
+
+	// apply gain and shift by +0.5
+	 distSignal = (distSignal*gain) + 16383;
+	// asymmetrical clipping
+	if(distSignal > 21844){
+		distSignal = 21844;
+		clean = clean - distSignal;
 	}else
-	if(s16 < -21844){
-		s16 = s16/(2*gain);
+	if(distSignal < -29000){
+		distSignal = -29000;
+		clean = clean - distSignal;
 	}else{
-		s16 = s16;
+		distSignal = distSignal;
 	}
+
+	distSignal = distSignal + clean;
+	// gain stage 2
+	// apply gain and shift by +0.5
+	 distSignal = (distSignal*gain) + 16383;
+	// asymmetrical clipping
+	if(distSignal > 21844){
+		distSignal = 21844;
+		clean = clean - distSignal;
+	}else
+	if(distSignal < -29000){
+		distSignal = -29000;
+		clean = clean - distSignal;
+	}else{
+		distSignal = distSignal;
+	}
+
+    distSignal = (distSignal+ clean)/10;
 }
 
 writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
@@ -154,9 +179,9 @@ writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
 // implement EQ Stage
 if(eqBypass){
 	if(lowCut){
-		wLow[2] = s16 - aLow[1]*wLow[1] - aLow[2]*wLow[0];
+		wLow[2] = distSignal - aLow[1]*wLow[1] - aLow[2]*wLow[0];
 		low = bLow[0]*wLow[2] + bLow[1]*wLow[1] + bLow[2]*wLow[0];
-	}else{low = s16;}
+	}else{low = distSignal;}
 	if(midCut){
 		wMid[2] = low - aMid[1]*wMid[1] - aMid[2]*wMid[0];
 		mid = bMid[0]*wMid[2] + bMid[1]*wMid[1] + bMid[2]*wMid[0];
@@ -170,7 +195,7 @@ if(eqBypass){
 		high = bLow[0]*wHigh[2] + bHigh[1]*wHigh[1] + bHigh[2]*wHigh[0];
 	}else{high = pres;}
 	buffer[writeIndex] = high;
-}else{buffer[writeIndex] = s16;}
+}else{buffer[writeIndex] = distSignal;}
 
 
 //apply cab sim
