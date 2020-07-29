@@ -63,6 +63,11 @@ hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/unaccess.h
 hello.obj: ../data.h
 hello.obj: ../biquad.h
 hello.obj: ../rb.h
+hello.obj: ../kiss_fft.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdlib.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdio.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/math.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/string.h
 
 ../hello.c: 
 C:/eXperimenter/L138_chapter2/GuitarAmpGitVersion/Debug/hellocfg.h: 
@@ -127,3 +132,8 @@ C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/unaccess.h:
 ../data.h: 
 ../biquad.h: 
 ../rb.h: 
+../kiss_fft.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdlib.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdio.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/math.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/string.h: 

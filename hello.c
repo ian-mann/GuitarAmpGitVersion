@@ -8,8 +8,10 @@
 #include "math.h"
 #include "data.h"
 #include "biquad.h"
+#include "kiss_fft.h"
 
-#define SIZE_OF_BUFFER 29
+
+#define SIZE_OF_BUFFER 2048
 
 int16_t volatile mask = 0xffff;
 float eqSignal[SIZE_OF_BUFFER];
@@ -34,6 +36,8 @@ biquad_t high;
 // setup global buffer
 int writeIndex = 0;
 
+
+
 //---------------------------------------------------------
 //---------------------------------------------------------
 void main(void)
@@ -43,6 +47,8 @@ void main(void)
 	eqSignal[i]=0;
 	buffer[i] = 0;
 	}
+
+	kiss_fft_cfg mycfg=kiss_fft_alloc(1024,0,NULL,NULL);
 
 // end loop
 initAll();
