@@ -9,7 +9,7 @@
 #include "data.h"
 #include "biquad.h"
 
-#define SIZE_OF_BUFFER 64
+#define SIZE_OF_BUFFER 29
 
 int16_t volatile mask = 0xffff;
 float eqSignal[SIZE_OF_BUFFER];
@@ -202,10 +202,10 @@ if(eqBypass){
 
 //apply cab sim
 //	for(i=0;i<SIZE_OF_BUFFER;i++){
-//	signal += (buffer[writeIndex+i % SIZE_OF_BUFFER] * b_fir[i]);
+//	signal += (buffer[writeIndex+i % SIZE_OF_BUFFER] * cab[SIZE_OF_BUFFER-i]);
 //}
 	signal = buffer[writeIndex];
-// revert to time domain
+
 //outputSample = round(buffer[writeIndex]/2);
 outputSample = signal;
 	if (MCASP->RSLOT)
