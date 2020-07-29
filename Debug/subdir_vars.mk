@@ -16,7 +16,9 @@ C_SRCS += \
 ../hello.c \
 ./hellocfg_c.c \
 ../ignore.c \
+../kiss_fastfir.c \
 ../kiss_fft.c \
+../kiss_fftr.c \
 ../rb.c 
 
 OBJS += \
@@ -27,7 +29,9 @@ OBJS += \
 ./hellocfg.obj \
 ./hellocfg_c.obj \
 ./ignore.obj \
+./kiss_fastfir.obj \
 ./kiss_fft.obj \
+./kiss_fftr.obj \
 ./rb.obj 
 
 GEN_MISC_FILES += \
@@ -47,7 +51,9 @@ C_DEPS += \
 ./hello.d \
 ./hellocfg_c.d \
 ./ignore.d \
+./kiss_fastfir.d \
 ./kiss_fft.d \
+./kiss_fftr.d \
 ./rb.d 
 
 GEN_CMDS += \
@@ -77,7 +83,9 @@ C_DEPS__QUOTED += \
 "hello.d" \
 "hellocfg_c.d" \
 "ignore.d" \
+"kiss_fastfir.d" \
 "kiss_fft.d" \
+"kiss_fftr.d" \
 "rb.d" 
 
 S??_DEPS__QUOTED += \
@@ -91,7 +99,9 @@ OBJS__QUOTED += \
 "hellocfg.obj" \
 "hellocfg_c.obj" \
 "ignore.obj" \
+"kiss_fastfir.obj" \
 "kiss_fft.obj" \
+"kiss_fftr.obj" \
 "rb.obj" 
 
 C_SRCS__QUOTED += \
@@ -100,7 +110,9 @@ C_SRCS__QUOTED += \
 "../framework.c" \
 "./hellocfg_c.c" \
 "../ignore.c" \
+"../kiss_fastfir.c" \
 "../kiss_fft.c" \
+"../kiss_fftr.c" \
 "../rb.c" 
 
 S??_SRCS__QUOTED += \

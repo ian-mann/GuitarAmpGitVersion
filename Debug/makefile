@@ -17,7 +17,9 @@ ORDERED_OBJS += \
 "./hellocfg.obj" \
 "./hellocfg_c.obj" \
 "./ignore.obj" \
+"./kiss_fastfir.obj" \
 "./kiss_fft.obj" \
+"./kiss_fftr.obj" \
 "./rb.obj" \
 $(GEN_CMDS__FLAG) \
 -l"C:/eXperimenter/c6748/bsl/lib/evmc6748_bsl.lib" \
@@ -160,9 +162,9 @@ GuitarAmpGitVersion.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(GEN_HDRS__QUOTED)$(GEN_MISC_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_CMDS__QUOTED)
-	-$(RM) "biquad.d" "block_sine.d" "framework.d" "hello.d" "hellocfg_c.d" "ignore.d" "kiss_fft.d" "rb.d" 
+	-$(RM) "biquad.d" "block_sine.d" "framework.d" "hello.d" "hellocfg_c.d" "ignore.d" "kiss_fastfir.d" "kiss_fft.d" "kiss_fftr.d" "rb.d" 
 	-$(RM) "hellocfg.d" 
-	-$(RM) "biquad.obj" "block_sine.obj" "framework.obj" "hello.obj" "hellocfg.obj" "hellocfg_c.obj" "ignore.obj" "kiss_fft.obj" "rb.obj" 
+	-$(RM) "biquad.obj" "block_sine.obj" "framework.obj" "hello.obj" "hellocfg.obj" "hellocfg_c.obj" "ignore.obj" "kiss_fastfir.obj" "kiss_fft.obj" "kiss_fftr.obj" "rb.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

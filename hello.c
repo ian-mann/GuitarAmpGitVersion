@@ -9,14 +9,15 @@
 #include "data.h"
 #include "biquad.h"
 #include "kiss_fft.h"
+#include "complex.h"
 
 
 #define SIZE_OF_BUFFER 2048
 
 int16_t volatile mask = 0xffff;
 float eqSignal[SIZE_OF_BUFFER];
-int32_t fftSignal[SIZE_OF_BUFFER];
-float buffer[SIZE_OF_BUFFER];
+kiss_fft_cpx *fftSignal;
+kiss_fft_cpx *buffer;
 float wLow[3] = {0,0,0};
 float wMid[3] = {0,0,0};
 float wPres[3] = {0,0,0};
@@ -33,6 +34,9 @@ biquad_t mid;
 biquad_t pres;
 biquad_t high;
 
+kiss_fft_cfg fft;
+kiss_fft_cfg ifft;
+
 // setup global buffer
 int writeIndex = 0;
 
@@ -45,10 +49,9 @@ void main(void)
 	int i = 0;
 	for(i=0;i<SIZE_OF_BUFFER;i++){
 	eqSignal[i]=0;
-	buffer[i] = 0;
 	}
 
-	kiss_fft_cfg mycfg=kiss_fft_alloc(1024,0,NULL,NULL);
+
 
 // end loop
 initAll();
@@ -202,15 +205,15 @@ if(eqBypass){
 		wHigh[2] = pres - aHigh[1]*wHigh[1] - aHigh[2]*wHigh[0];
 		high = bLow[0]*wHigh[2] + bHigh[1]*wHigh[1] + bHigh[2]*wHigh[0];
 	}else{high = pres;}
-	buffer[writeIndex] = high;
-}else{buffer[writeIndex] = distSignal;}
+	eqSignal[writeIndex] = high;
+}else{eqSignal[writeIndex] = distSignal;}
+
+fft = kiss_fft_alloc(SIZE_OF_BUFFER,0,NULL,NULL);
+ifft = kiss_fft_alloc(SIZE_OF_BUFFER,1,NULL,NULL);
+
+kiss_fft(fft, buffer, fftSignal);
 
 
-//apply cab sim
-//	for(i=0;i<SIZE_OF_BUFFER;i++){
-//	signal += (buffer[writeIndex+i % SIZE_OF_BUFFER] * cab[SIZE_OF_BUFFER-i]);
-//}
-	signal = buffer[writeIndex];
 
 //outputSample = round(buffer[writeIndex]/2);
 outputSample = signal;
