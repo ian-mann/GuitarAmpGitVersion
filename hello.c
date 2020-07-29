@@ -19,6 +19,8 @@ int16_t eqSignal[SIZE_OF_BUFFER];
 kiss_fft_cpx fftSignal[SIZE_OF_BUFFER];
 kiss_fft_cpx buffer[SIZE_OF_BUFFER];
 kiss_fft_cpx cabFFT[SIZE_OF_BUFFER];
+kiss_fft_cpx finalSignal[SIZE_OF_BUFFER];
+kiss_fft_cpx signal[SIZE_OF_BUFFER];
 kiss_fft_cpx b_fir[SIZE_OF_BUFFER] = {0.099868245,		0.34089431,		0.63809788,		0.86921668,		0.96605086,		0.91215849,		0.70056963,		0.37781093,		0.063172527,		-0.16064043,		-0.26962945,		-0.26212081,		-0.17035504,		-0.055681292,		0.027985157,		0.063532181,		0.058243815,		0.025976719,		-0.0065959101,		-0.027907075,		-0.039835636,		-0.039946143,		-0.019803109,		0.0085588107,		0.032564823,		0.054773752,		0.074585147,		0.069757886,		0.036622707,		-0.011783541,		-0.068122216,		-0.11819131,		-0.15328045,		-0.17030998,		-0.16660698,		-0.14788695,		-0.12348086,		-0.10680146,		-0.099278755,		-0.083950467,		-0.069271274,		-0.061660234,		-0.056716029,		-0.053267185,		-0.053699914,		-0.062564798,		-0.073281832,		-0.076733656,		-0.075677104,	-0.066098519,		-0.056319777,		-0.054670278,		-0.067374416,	-0.096073218,		-0.12863536,		-0.15619142,		-0.17218836,		-0.16904409,		-0.14348622,	-0.10059220,		-0.057519022,		-0.025751533,		-0.0013141037,		0.016694965};
 float wLow[3] = {0,0,0};
 float wMid[3] = {0,0,0};
@@ -51,6 +53,14 @@ void main(void)
 	int i = 0;
 	for(i=0;i<SIZE_OF_BUFFER;i++){
 	eqSignal[i]=0;
+	buffer[i].r=0;
+	buffer[i].i=0;
+	fftSignal[i].r=0;
+	fftSignal[i].i=0;
+	cabFFT[i].r=0;
+	cabFFT[i].i=0;
+	finalSignal[i].r=0;
+	finalSignal[i].i=0;
 	}
 
 
@@ -135,7 +145,7 @@ void audioHWI(void)
 int32_t s16 = 0;
 int32_t clean = 0;
 int16_t outputSample = 0; // initialise sample variable
-float signal = 0, low = 0, mid = 0, pres = 0, high = 0, distSignal = 0;
+float  low = 0, mid = 0, pres = 0, high = 0, distSignal = 0;
 
 
 int i = 0;
@@ -211,8 +221,8 @@ if(eqBypass){
 }else{eqSignal[writeIndex] = distSignal;}
 
 for(i=0;i<SIZE_OF_BUFFER;i++){
-	buffer[i].r=eqSignal[i];
-	buffer[i].i=0;
+	buffer[writeIndex%i].r=eqSignal[writeIndex%i];
+	buffer[writeIndex%i].i=0;
 	}
 
 fft = kiss_fft_alloc(SIZE_OF_BUFFER,0,NULL,NULL);
@@ -223,13 +233,14 @@ kiss_fft(fft, buffer, fftSignal);
 kiss_fft(fft, b_fir, cabFFT);
 
 for(i=0;i<SIZE_OF_BUFFER;i++){
-buffer[i] = fftSignal[i]*cabFFT[i];
+	finalSignal[writeIndex%i].r = cabFFT[writeIndex%i].r*fftSignal[writeIndex%i].r - cabFFT[writeIndex%i].i*fftSignal[i].i;
+	finalSignal[writeIndex%i].i = cabFFT[writeIndex%i].i*fftSignal[writeIndex%i].r + cabFFT[writeIndex%i].r*fftSignal[i].i;
 	}
 
-
+kiss_fft(ifft, finalSignal, signal);
 
 //outputSample = round(buffer[writeIndex]/2);
-outputSample = signal;
+outputSample = signal[writeIndex].r;
 	if (MCASP->RSLOT)
 	{
 		// THIS IS THE LEFT CHANNEL!!!
