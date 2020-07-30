@@ -68,6 +68,10 @@ hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdlib.h
 hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdio.h
 hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/math.h
 hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/string.h
+hello.obj: ../_kiss_fft_guts.h
+hello.obj: ../kiss_fft_log.h
+hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/limits.h
+hello.obj: ../kiss_fftr.h
 hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/complex.h
 
 ../hello.c: 
@@ -138,4 +142,8 @@ C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdlib.h:
 C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/stdio.h: 
 C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/math.h: 
 C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/string.h: 
+../_kiss_fft_guts.h: 
+../kiss_fft_log.h: 
+C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/limits.h: 
+../kiss_fftr.h: 
 C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/complex.h: 
