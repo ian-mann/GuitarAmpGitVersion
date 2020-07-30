@@ -140,13 +140,13 @@ kiss_fftr_cfg fft = kiss_fftr_alloc(SIZE_OF_BUFFER,0,0,0);
 kiss_fftr_cfg ifft= kiss_fftr_alloc(SIZE_OF_BUFFER,1,0,0);
 
 // time domain signals
-kiss_fft_scalar *buffer = new kiss_fft_scalar[SIZE_OF_BUFFER];
-kiss_fft_scalar *signal = new kiss_fft_scalar[SIZE_OF_BUFFER];
-kiss_fft_scalar *b_fir = new kiss_fft_scalar[SIZE_OF_BUFFER];
+kiss_fft_scalar *buffer[SIZE_OF_BUFFER];
+kiss_fft_scalar *signal[SIZE_OF_BUFFER];
+kiss_fft_scalar *b_fir[SIZE_OF_BUFFER];
 
-kiss_fft_cpx *fftSignal = new kiss_fft_cpx[SIZE_OF_BUFFER/2+1];
-kiss_fft_cpx *cabFFT= new kiss_fft_cpx[SIZE_OF_BUFFER/2+1];
-kiss_fft_cpx *finalSignal = new kiss_fft_cpx[SIZE_OF_BUFFER/2+1];
+kiss_fft_cpx *fftSignal[SIZE_OF_BUFFER/2+1];
+kiss_fft_cpx *cabFFT[SIZE_OF_BUFFER/2+1];
+kiss_fft_cpx *finalSignal[SIZE_OF_BUFFER/2+1];
 
 
 //{0.099868245,		0.34089431,		0.63809788,		0.86921668,		0.96605086,		0.91215849,		0.70056963,		0.37781093,		0.063172527,		-0.16064043,		-0.26962945,		-0.26212081,		-0.17035504,		-0.055681292,		0.027985157,		0.063532181,		0.058243815,		0.025976719,		-0.0065959101,		-0.027907075,		-0.039835636,		-0.039946143,		-0.019803109,		0.0085588107,		0.032564823,		0.054773752,		0.074585147,		0.069757886,		0.036622707,		-0.011783541,		-0.068122216,		-0.11819131,		-0.15328045,		-0.17030998,		-0.16660698,		-0.14788695,		-0.12348086,		-0.10680146,		-0.099278755,		-0.083950467,		-0.069271274,		-0.061660234,		-0.056716029,		-0.053267185,		-0.053699914,		-0.062564798,		-0.073281832,		-0.076733656,		-0.075677104,	-0.066098519,		-0.056319777,		-0.054670278,		-0.067374416,	-0.096073218,		-0.12863536,		-0.15619142,		-0.17218836,		-0.16904409,		-0.14348622,	-0.10059220,		-0.057519022,		-0.025751533,		-0.0013141037,		0.016694965};
