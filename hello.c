@@ -136,6 +136,9 @@ int32_t clean = 0;
 int16_t outputSample = 0; // initialise sample variable
 float  low = 0, mid = 0, pres = 0, high = 0, distSignal = 0;
 
+kiss_fftr_cfg fft = kiss_fftr_alloc(SIZE_OF_BUFFER,0,0,0);
+kiss_fftr_cfg ifft= kiss_fftr_alloc(SIZE_OF_BUFFER,1,0,0);
+
 // time domain signals
 kiss_fft_scalar *buffer = new kiss_fft_scalar[SIZE_OF_BUFFER];
 kiss_fft_scalar *signal = new kiss_fft_scalar[SIZE_OF_BUFFER];
@@ -222,24 +225,18 @@ if(eqBypass){
 }else{eqSignal[writeIndex] = distSignal;}
 
 
-
-kiss_fft_cfg fft = kiss_fftr_alloc(SIZE_OF_BUFFER,0,0,0);
-kiss_fft_cfg ifft= kiss_fftr_alloc(SIZE_OF_BUFFER,1,0,0);
-
-
-
 for(i=0;i<SIZE_OF_BUFFER;i++){
-	buffer[writeIndex%i]=eqSignal[writeIndex%i];
-	buffer[writeIndex%i]=0;
+	buffer[i]=eqSignal[i];
+	buffer[i]=0;
 	}
 
-//kiss_fft(fft, buffer, fftSignal);
-//kiss_fft(fft, b_fir, cabFFT);
+//kiss_fftr(fft, buffer, fftSignal);
+//kiss_fftr(fft, b_fir, cabFFT);
 
 
-kiss_fft(ifft, finalSignal, signal);
+kiss_fftr(ifft, finalSignal, signal);
 
-outputSample = signal[writeIndex].r;
+outputSample = signal[writeIndex];
 	if (MCASP->RSLOT)
 	{
 		// THIS IS THE LEFT CHANNEL!!!
