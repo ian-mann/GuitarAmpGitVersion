@@ -9,7 +9,7 @@
 #include "data.h"
 #include "biquad.h"
 
-#define SIZE_OF_BUFFER 29
+#define SIZE_OF_BUFFER 28
 
 int16_t volatile mask = 0xffff;
 float eqSignal[SIZE_OF_BUFFER];
@@ -128,54 +128,33 @@ float signal = 0, low = 0, mid = 0, pres = 0, high = 0, distSignal = 0;
 
 
 int i = 0;
-int gain = 60;
+int gain = 10;
 
 
 s16 = read_audio_sample(); // get current input sample
 
-s16 = s16*2;
+s16 = s16*gain;
 
 // implement distortion algorithm
-if(dist){
-
-	// waveshaping
-//	distSignal = ((2*s16)/2)*(1-(s16^2)/2);
-	 distSignal = s16;
-	 clean = s16;
-
-	// apply gain and shift by +0.5
-	 distSignal = (distSignal*gain) + 16383;
-	// asymmetrical clipping
-	if(distSignal > 21844){
-		distSignal = 21844;
-		clean = clean - distSignal;
-	}else
-	if(distSignal < -29000){
-		distSignal = -29000;
-		clean = clean - distSignal;
+if(dist)
+{
+	if(s16< -2918){
+		s16 = -(3/4*(1-(1-(s16-1077)^12+(1/3)*(s16-1077))+0.01));
+	}else if(s16>10486){
+		s16 = 20644;
 	}else{
-		distSignal = distSignal;
+		s16 = -6.152*(s16^2)+3.9375*(s16);
 	}
 
-	distSignal = distSignal + clean;
-	// gain stage 2
-	// apply gain and shift by +0.5
-	 distSignal = (distSignal*gain) + 16383;
-	// asymmetrical clipping
-	if(distSignal > 21844){
-		distSignal = 21844;
-		clean = clean - distSignal;
-	}else
-	if(distSignal < -29000){
-		distSignal = -29000;
-		clean = clean - distSignal;
+	if(s16< -2918){
+		s16 = -(3/4*(1-(1-(s16-1077)^12+(1/3)*(s16-1077))+0.01));
+	}else if(s16>10486){
+		s16 = 20644;
 	}else{
-		distSignal = distSignal;
+		s16 = -6.152*(s16^2)+3.9375*(s16);
 	}
-
-    distSignal = (distSignal+ clean)/10;
 }
-
+distSignal = s16;
 writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
 
 // implement EQ Stage
