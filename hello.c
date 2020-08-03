@@ -8,7 +8,7 @@
 #include "math.h"
 #include "data.h"
 #include "biquad.h"
-
+#include "fft_dp_1d_r2c.h"
 #define SIZE_OF_BUFFER 28
 
 int16_t volatile mask = 0xffff;
@@ -30,6 +30,9 @@ biquad_t low;
 biquad_t mid;
 biquad_t pres;
 biquad_t high;
+
+fft_callout_t fxns;
+fft_plan_t fft_dp_plan_1d_r2c(2048,0,fxns);
 
 // setup global buffer
 int writeIndex = 0;
@@ -128,7 +131,7 @@ float signal = 0, low = 0, mid = 0, pres = 0, high = 0, distSignal = 0;
 
 
 int i = 0;
-int gain = 10;
+int gain = 20;
 
 
 s16 = read_audio_sample(); // get current input sample
@@ -145,6 +148,7 @@ if(dist)
 	}else{
 		s16 = -6.152*(s16^2)+3.9375*(s16);
 	}
+	s16 = s16*gain;
 
 	if(s16< -2918){
 		s16 = -(3/4*(1-(1-(s16-1077)^12+(1/3)*(s16-1077))+0.01));
