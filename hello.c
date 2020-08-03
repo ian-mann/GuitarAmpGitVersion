@@ -8,7 +8,6 @@
 #include "math.h"
 #include "data.h"
 #include "biquad.h"
-#include "fft_dp_1d_r2c.h"
 #define SIZE_OF_BUFFER 28
 
 int16_t volatile mask = 0xffff;
@@ -30,9 +29,6 @@ biquad_t low;
 biquad_t mid;
 biquad_t pres;
 biquad_t high;
-
-fft_callout_t fxns;
-fft_plan_t fft_dp_plan_1d_r2c(2048,0,fxns);
 
 // setup global buffer
 int writeIndex = 0;
