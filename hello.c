@@ -129,7 +129,7 @@ float signal = 0, low = 0, mid = 0, pres = 0, high = 0, distSignal = 0, s1612 = 
 
 
 int i = 0;
-int gain = 20;
+int gain = 100;
 
 
 s16 = read_audio_sample();// get current input sample
