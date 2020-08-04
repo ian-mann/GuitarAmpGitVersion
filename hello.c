@@ -8,7 +8,7 @@
 #include "math.h"
 #include "data.h"
 #include "biquad.h"
-#define SIZE_OF_BUFFER 28
+#define SIZE_OF_BUFFER 64
 
 int16_t volatile mask = 0xffff;
 float eqSignal[SIZE_OF_BUFFER];
@@ -123,15 +123,13 @@ void audioHWI(void)
 int32_t s16 = 0;
 int32_t clean = 0;
 int16_t outputSample = 0; // initialise sample variable
-float signal = 0, low = 0, mid = 0, pres = 0, high = 0, distSignal = 0;
+float signal = 0, low = 0, mid = 0, pres = 0, high = 0, distSignal = 0, s1612 = 0;
+
+
 
 
 int i = 0;
-<<<<<<< HEAD
-int gain = 2;
-=======
 int gain = 20;
->>>>>>> parent of f1933a0... 12AX7 Distortion only WORKING NO CAB
 
 
 s16 = read_audio_sample();// get current input sample
@@ -140,30 +138,22 @@ s16 = read_audio_sample();// get current input sample
 s16 = s16*gain;
 
 
+
 // implement distortion algorithm
 if(dist)
 {
-	if(s16 < -32223) {
-	s16= -10690;
-	}else	if(s16 > 29478){
-	s16 = 22995;
-	}else	if(s16 >= -32223 && s16 <= -16613){
-	s16 = (537)*(s16*s16*s16) + (14221)*(s16^2) + (11233)*(s16) + (-17944);
-	}else	if(s16 > -16613 && s16 <= -6802){
-	s16 = (7753)*(s16*s16*s16) + (4343)*(s16^2) + (5823)*(s16) + (-23793);
-	}else	if(s16 > -6802 && s16 <= -69){
-	s16 = (3543)*(s16*s16*s16) + (34970)*(s16^2) + (5220)*(s16) + (-24597);
-	}else	if(s16 > -69 && s16 <= 6567){
-	s16 = (-4171)*(s16*s16*s16) + (31021)*(s16^2) + (5221)*(s16) + (-1089);
-	}else	if(s16 > 6567 && s16 <= 16404){
-	s16 = (-35573)*(s16*s16*s16) + (40530)*(s16^2) + (5540)*(s16) + (-25050);
-	}else	if(s16 > 16404 && s16 <= 29478){
-	s16 = (9968)*(s16*s16*s16) + (-3693)*(s16*s16) + (54224)*(s16) + (-10630);
+	if(s16<-2918){
+		s16 = -(3/4*(1-(1-s16))) + (1/3*(s16-1076)+376);
+
+	}else if(s16>10486){
+
+		s16 = 20645;
+
+	}else{
+		s16 = -6.152*(s16*s16) + 3.9375*s16;
 	}
 }
-
-distSignal = s16;
-
+distSignal = round(s16);
 writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
 
 // implement EQ Stage
@@ -188,9 +178,10 @@ if(eqBypass){
 }else{buffer[writeIndex] = distSignal;}
 
 
+
 //apply cab sim
 //	for(i=0;i<SIZE_OF_BUFFER;i++){
-//	signal += (buffer[writeIndex+i % SIZE_OF_BUFFER] * cab[SIZE_OF_BUFFER-i]);
+//	signal += (buffer[writeIndex+i % SIZE_OF_BUFFER] * b_fir[SIZE_OF_BUFFER-i]);
 //}
 	signal = buffer[writeIndex];
 
