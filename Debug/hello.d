@@ -63,8 +63,6 @@ hello.obj: C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/unaccess.h
 hello.obj: ../data.h
 hello.obj: ../biquad.h
 hello.obj: ../rb.h
-hello.obj: C:/ti/fftlib_c66x_2_0_0_2/packages/ti/fftlib/src/fft_dp_1d_r2c/fft_dp_1d_r2c.h
-hello.obj: C:/ti/fftlib_c66x_2_0_0_2/packages/ti/fftlib/src/common/fft_common.h
 
 ../hello.c: 
 C:/eXperimenter/L138_chapter2/GuitarAmpGitVersion/Debug/hellocfg.h: 
@@ -129,5 +127,3 @@ C:/ti/ccsv6/tools/compiler/c6000_7.4.18/include/unaccess.h:
 ../data.h: 
 ../biquad.h: 
 ../rb.h: 
-C:/ti/fftlib_c66x_2_0_0_2/packages/ti/fftlib/src/fft_dp_1d_r2c/fft_dp_1d_r2c.h: 
-C:/ti/fftlib_c66x_2_0_0_2/packages/ti/fftlib/src/common/fft_common.h: 
