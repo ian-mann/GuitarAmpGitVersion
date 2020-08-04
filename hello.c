@@ -8,7 +8,7 @@
 #include "math.h"
 #include "data.h"
 #include "biquad.h"
-#define SIZE_OF_BUFFER 64
+#define SIZE_OF_BUFFER 28
 
 int16_t volatile mask = 0xffff;
 float eqSignal[SIZE_OF_BUFFER];
@@ -127,7 +127,11 @@ float signal = 0, low = 0, mid = 0, pres = 0, high = 0, distSignal = 0;
 
 
 int i = 0;
+<<<<<<< HEAD
 int gain = 2;
+=======
+int gain = 20;
+>>>>>>> parent of f1933a0... 12AX7 Distortion only WORKING NO CAB
 
 
 s16 = read_audio_sample();// get current input sample
@@ -186,7 +190,7 @@ if(eqBypass){
 
 //apply cab sim
 //	for(i=0;i<SIZE_OF_BUFFER;i++){
-//	signal += (buffer[writeIndex+i % SIZE_OF_BUFFER] * b_fir[SIZE_OF_BUFFER-i]);
+//	signal += (buffer[writeIndex+i % SIZE_OF_BUFFER] * cab[SIZE_OF_BUFFER-i]);
 //}
 	signal = buffer[writeIndex];
 
