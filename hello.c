@@ -133,30 +133,31 @@ int gain = 20;
 s16 = read_audio_sample();// get current input sample
 
 
-s16 = s16*gain;
+distSignal = s16/32768;
+distSignal = distSignal*gain;
 
 // implement distortion algorithm
 if(dist)
 {
-	if(s16 < -0.98338) {
+	if(distSignal < -0.98338) {
 	distSignal= -0.32623;
-	}else	if(s16 > 0.89961){
-	s16 = 0.70177;
-	}else	if(s16 >= -0.98338 && s16 <= -0.50698){
-	s16 = (pow(7.8108, pow(10,-2))*(pow(s16,3))) + (pow(2.3041,pow(10,-1))*(pow(s16,2))) + (pow(2.9710,pow(10,-1))*(s16)) + (pow(-1.8261,pow(10,-1)));
-	}else	if(s16 > -0.50698 && s16 <= -0.20759){
-	s16 = (pow(4.2263,pow(10,-1))*(pow(s16,3))) + (pow(7.5441,pow(10,-1))*(pow(s16,2))) + (pow(5.6276,pow(10,-1))*(s16)) + (pow(-1.3772,pow(10,-1)));
-	}else	if(s16 > -0.20759 && s16 <= -0.00212){
-	s16 = (9.2483*10^-1)*(s16^3) + (1.0672)*(s16^2) + (6.2768*10^-1)*(s16) + (-1.3322*10^-1);
-	}else	if(s16 > -0.00212 && s16 <= 0.20041){
-	s16 = (-7.8522*10^-1)*(s16^3) + (1.0563*10^-1)*(s16^2) + (6.2766*10^-1)*(s16) + (-0.3322*10^-1);
-	}else	if(s16 > 0.20041 && s16 <= 0.50062){
-	s16 = (-1.0856)*(s16^3) + (1.2369)*(s16^2) + (5.9147*10^-1)*(s16) + (-1.3081*10^-1);
-	}else	if(s16 > 0.50062 && s16 <= 0.89961){
-	s16 = (3.2873*10^-1)*(s16^3) + (-8.8720*10^-1)*(s16^2) + (1.6548)*(s16) + (-3.0825*10^-1);
+	}else	if(distSignal > 0.89961){
+	distSignal = 0.70177;
+	}else	if(distSignal >= -0.98338 && distSignal <= -0.50698){
+	distSignal = (pow(7.8108, pow(10,-2))*(pow(distSignal,3))) + (pow(2.3041,pow(10,-1))*(pow(s16,2))) + (pow(2.9710,pow(10,-1))*(distSignal)) + (pow(-1.8261,pow(10,-1)));
+	}else	if(distSignal > -0.50698 && distSignal <= -0.20759){
+	distSignal = (pow(4.2263,pow(10,-1))*(pow(distSignal,3))) + (pow(7.5441,pow(10,-1))*(pow(distSignal,2))) + (pow(5.6276,pow(10,-1))*(distSignal)) + (pow(-1.3772,pow(10,-1)));
+	}else	if(distSignal > -0.20759 && distSignal <= -0.00212){
+	distSignal = (pow(9.2483,pow(10,-1))*(pow(distSignal,3))) + (1.0672)*(pow(distSignal,2)) + (pow(6.2768,pow(10,-1))*(distSignal)) + (pow(-1.3322,pow(10,-1)));
+	}else	if(distSignal > -0.00212 && distSignal <= 0.20041){
+	distSignal = (pow(-7.8522,pow(10,-1))*(pow(distSignal,3))) + (pow(1.0563,pow(10,-1))*(pow(distSignal,2))) + (pow(6.2766,pow(10,-1))*(distSignal)) + (pow(-0.3322,pow(10,-1)));
+	}else	if(distSignal > 0.20041 && distSignal <= 0.50062){
+	distSignal = (-1.0856)*(pow(distSignal,3)) + (1.2369)*(pow(distSignal,2)) + (pow(5.9147,pow(10,-1))*(distSignal)) + (pow(-1.3081,pow(10,-1)));
+	}else	if(distSignal > 0.50062 && distSignal <= 0.89961){
+	distSignal = (pow(3.2873,pow(10,-1))*(pow(distSignal,3))) + (pow(-8.8720,pow(10,-1))*(pow(distSignal,2))) + (1.6548)*(distSignal) + (pow(-3.0825,pow(10,-1)));
 	}
 }
-distSignal = s16;
+distSignal = distSignal*32768;
 writeIndex = (writeIndex + SIZE_OF_BUFFER - 1) % SIZE_OF_BUFFER;
 
 // implement EQ Stage
