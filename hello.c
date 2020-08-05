@@ -36,6 +36,8 @@ int writeIndex = 0;
 //---------------------------------------------------------
 //---------------------------------------------------------
 void main(void)
+
+
 {
 	int i = 0;
 	for(i=0;i<SIZE_OF_BUFFER;i++){
@@ -121,18 +123,19 @@ else
 void audioHWI(void)
 {
 int32_t s16 = 0;
-int32_t clean = 0;
 int16_t outputSample = 0; // initialise sample variable
-float signal = 0, low = 0, mid = 0, pres = 0, high = 0, distSignal = 0, s1612 = 0;
+float signal = 0, low = 0, mid = 0, pres = 0, high = 0, distSignal = 0;
 
-
-
-
-int i = 0;
-int gain = 100;
+int gain = 1000;
 
 
 s16 = read_audio_sample();// get current input sample
+
+
+// gate input signal if signal less than 1/8
+if (s16<4096){
+	s16 = 0;
+}
 
 
 s16 = s16*gain;
@@ -159,18 +162,26 @@ if(eqBypass){
 	if(lowCut){
 		wLow[2] = distSignal - aLow[1]*wLow[1] - aLow[2]*wLow[0];
 		low = bLow[0]*wLow[2] + bLow[1]*wLow[1] + bLow[2]*wLow[0];
+	    wLow[0] = wLow[1];
+		wLow[1] = wLow[2];
 	}else{low = distSignal;}
 	if(midCut){
 		wMid[2] = low - aMid[1]*wMid[1] - aMid[2]*wMid[0];
 		mid = bMid[0]*wMid[2] + bMid[1]*wMid[1] + bMid[2]*wMid[0];
+		wMid[0] = wMid[1];
+		wMid[1] = wMid[2];
 	}else{mid = low;}
 	if(presCut){
 		wPres[2] = mid - aPres[1]*wPres[1] - aPres[2]*wPres[0];
 		pres = bPres[0]*wPres[2] + bPres[1]*wPres[1] + bPres[2]*wPres[0];
+		wPres[0] = wPres[1];
+		wPres[1] = wPres[2];
 	}else{pres = mid;}
 	if(highCut){
 		wHigh[2] = pres - aHigh[1]*wHigh[1] - aHigh[2]*wHigh[0];
 		high = bLow[0]*wHigh[2] + bHigh[1]*wHigh[1] + bHigh[2]*wHigh[0];
+		wHigh[0] = wHigh[1];
+		wHigh[1] = wHigh[2];
 	}else{high = pres;}
 	buffer[writeIndex] = high;
 }else{buffer[writeIndex] = distSignal;}
